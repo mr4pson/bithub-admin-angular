@@ -1,0 +1,24 @@
+<div class="generic-form">
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>ID</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+    </div>
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['reforders-created-at']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [value]="x.formattedDate('created_at', true)" disabled></div>
+    </div>    
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('referrer_email')">{{thelang.words['reforders-referrer-email']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.referrer_email" [class.error]="errors.referrer_email" disabled></div>   
+        <div class="gfp-error" *ngIf="errors.referrer_email">{{thelang.words[errors.referrer_email]}}</div>         
+    </div>      
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('referee_email')">{{thelang.words['reforders-referee-email']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.referee_email" [class.error]="errors.referee_email" disabled></div>   
+        <div class="gfp-error" *ngIf="errors.referee_email">{{thelang.words[errors.referee_email]}}</div>         
+    </div>      
+    <div class="gf-param">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['reforders-amount']}}</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="number" [(ngModel)]="x.amount" disabled></div>    
+    </div>     
+</div>

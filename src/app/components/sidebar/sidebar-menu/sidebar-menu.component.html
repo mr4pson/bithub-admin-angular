@@ -1,0 +1,73 @@
+<nav>
+    <section>
+        <div class="sbn-head">
+            <div class="sbn-head1">{{thelang.words["sidebar-basic-head1"]}}</div>
+            <div class="sbn-head2">{{thelang.words["sidebar-basic-head2"]}}</div>
+        </div>
+        <div class="sbn-items">
+            <a class="home" [class.active]="!url[1]" routerLink="/"><span>{{thelang.words["sidebar-home"]}}</span></a>
+            <a *ngIf="group_id === 1" class="settings" [class.active]="url[1] === 'settings'" routerLink="/settings"><span>{{thelang.words["sidebar-settings"]}}</span></a>
+            <a *ngIf="group_id === 1" class="admins" [class.active]="url[1] === 'admins'" routerLink="/admins"><span>{{thelang.words["sidebar-admins"]}}</span></a>
+            <a *ngIf="group_id === 1" class="localization expandable" [class.expanded]="subActive.localization" [class.active]="url[1] === 'localization'" (click)="toggleSub('localization')"><span>{{thelang.words["sidebar-localization"]}}</span></a>
+            <div class="sbn-sub" [class.active-3]="subActive.localization">
+                <a [class.active]="url[2] === 'langs'" routerLink="/localization/langs"><span>{{thelang.words["sidebar-langs"]}}</span></a>
+                <a [class.active]="url[2] === 'wordbooks'" routerLink="/localization/wordbooks"><span>{{thelang.words["sidebar-wordbooks"]}}</span></a>
+            </div>
+            <a *ngIf="group_id === 1" class="files" [class.active]="url[1] === 'files'" routerLink="/files"><span>{{thelang.words["sidebar-files"]}}</span></a>
+        </div>
+    </section>
+    <section>
+        <div class="sbn-head">
+            <div class="sbn-head1">{{thelang.words["sidebar-main-head1"]}}</div>
+            <div class="sbn-head2">{{thelang.words["sidebar-main-head2"]}}</div>
+        </div>
+        <div class="sbn-items">
+            <a *ngIf="group_id === 1" class="pages" [class.active]="url[1] === 'pages'" routerLink="/pages"><span>{{thelang.words["sidebar-pages"]}}</span></a>
+            <a *ngIf="group_id === 1" class="users" [class.active]="url[1] === 'users'" routerLink="/users"><span>{{thelang.words["sidebar-users"]}}</span></a>
+            <a class="catalogue expandable" [class.expanded]="subActive.catalogue" [class.active]="url[1] === 'catalogue'" (click)="toggleSub('catalogue')"><span>{{thelang.words["sidebar-catalogue"]}}</span></a>
+            <div class="sbn-sub" [class.active-5]="subActive.catalogue">
+                <a [class.active]="url[2] === 'guides'" routerLink="/catalogue/guides"><span>{{thelang.words["sidebar-guides"]}}</span></a>
+                <a [class.active]="url[2] === 'cats'" routerLink="/catalogue/cats"><span>{{thelang.words["sidebar-cats"]}}</span></a>
+                <a [class.active]="url[2] === 'linktypes'" routerLink="/catalogue/linktypes"><span>{{thelang.words["sidebar-linktypes"]}}</span></a>
+                <a [class.active]="url[2] === 'proposals'" routerLink="/catalogue/proposals"><span>{{thelang.words["sidebar-proposals"]}}</span></a>
+                <a [class.active]="url[2] === 'comments'" routerLink="/catalogue/comments"><span>{{thelang.words["sidebar-comments"]}}</span></a>
+            </div>
+            <a *ngIf="group_id === 1" class="finances expandable" [class.expanded]="subActive.finances" [class.active]="url[1] === 'finances'" (click)="toggleSub('finances')"><span>{{thelang.words["sidebar-finances"]}}</span></a>
+            <div class="sbn-sub" [class.active-5]="subActive.finances">
+                <a [class.active]="url[2] === 'tariffs'" routerLink="/finances/tariffs"><span>{{thelang.words["sidebar-tariffs"]}}</span></a>
+                <a [class.active]="url[2] === 'promocodes'" routerLink="/finances/promocodes"><span>{{thelang.words["sidebar-promocodes"]}}</span></a>
+                <a [class.active]="url[2] === 'inorders'" routerLink="/finances/inorders"><span>{{thelang.words["sidebar-inorders"]}}</span></a>
+                <a [class.active]="url[2] === 'outorders'" routerLink="/finances/outorders"><span>{{thelang.words["sidebar-outorders"]}}</span></a>
+                <a [class.active]="url[2] === 'reforders'" routerLink="/finances/reforders"><span>{{thelang.words["sidebar-reforders"]}}</span></a>
+            </div>
+            <a class="education expandable" [class.expanded]="subActive.education" [class.active]="url[1] === 'education'" (click)="toggleSub('education')"><span>{{thelang.words["sidebar-education"]}}</span></a>
+            <div class="sbn-sub" [class.active-2]="subActive.education">
+                <a [class.active]="url[2] === 'articles'" routerLink="/education/articles"><span>{{thelang.words["sidebar-articles"]}}</span></a>
+                <a [class.active]="url[2] === 'artcats'" routerLink="/education/artcats"><span>{{thelang.words["sidebar-artcats"]}}</span></a>
+            </div>
+            <a class="shop expandable" [class.expanded]="subActive.shop" [class.active]="url[1] === 'shop'" (click)="toggleSub('shop')"><span>{{thelang.words["sidebar-shop"]}}</span></a>
+            <div class="sbn-sub" [class.active-3]="subActive.shop">
+                <a [class.active]="url[2] === 'shopcats'" routerLink="/shop/shopcats"><span>{{thelang.words["sidebar-shopcats"]}}</span></a>
+                <a [class.active]="url[2] === 'shopitems'" routerLink="/shop/shopitems"><span>{{thelang.words["sidebar-shopitems"]}}</span></a>
+                <a [class.active]="url[2] === 'shoporders'" routerLink="/shop/shoporders"><span>{{thelang.words["sidebar-shoporders"]}}</span></a>
+            </div>
+            <a class="misc expandable" [class.expanded]="subActive.misc" [class.active]="url[1] === 'misc'" (click)="toggleSub('misc')"><span>{{thelang.words["sidebar-misc"]}}</span></a>
+            <div class="sbn-sub" [class.active-3]="subActive.misc">
+                <a [class.active]="url[2] === 'awards'" routerLink="/misc/awards"><span>{{thelang.words["sidebar-awards"]}}</span></a>
+                <a [class.active]="url[2] === 'baxers'" routerLink="/misc/baxers"><span>{{thelang.words["sidebar-baxers"]}}</span></a>
+                <a [class.active]="url[2] === 'drops'" routerLink="/misc/drops"><span>{{thelang.words["sidebar-drops"]}}</span></a>
+            </div>
+        </div>
+    </section>
+    <section *ngIf="group_id === 1">
+        <div class="sbn-head">
+            <div class="sbn-head1">{{thelang.words["sidebar-utils-head1"]}}</div>
+            <div class="sbn-head2">{{thelang.words["sidebar-utils-head2"]}}</div>
+        </div>
+        <div class="sbn-items">
+            <a class="mailtemplates" [class.active]="url[1] === 'mailtemplates'" routerLink="/mailtemplates"><span>{{thelang.words["sidebar-mailtemplates"]}}</span></a>
+            <a class="mailings" [class.active]="url[1] === 'mailings'" routerLink="/mailings"><span>{{thelang.words["sidebar-mailings"]}}</span></a>
+            <a class="backups" [class.active]="url[1] === 'backups'" routerLink="/backups"><span>{{thelang.words["sidebar-backups"]}}</span></a>
+        </div>
+    </section>
+</nav>

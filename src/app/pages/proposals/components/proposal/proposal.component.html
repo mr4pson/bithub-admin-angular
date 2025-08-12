@@ -1,0 +1,37 @@
+<div class="generic-form">
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>ID</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+    </div>
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['proposals-created-at']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [value]="x.formattedDate('created_at', true)" disabled></div>
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('user_id')">{{thelang.words['proposals-user']}}</label></div>
+        <div class="gfp-inputwrap">
+            <div class="inputwithbtns">
+                <select-simple [(value)]="x.user_id" field="email" sortBy="email" entity="user" [useSearch]="true" [useNull]="true" [error]="errors.user_id"></select-simple>
+                <div *ngIf="x.user_id" class="iwb-btns"><a class="roundbtn link" target="_blank" href="/users/edit/{{x.user_id}}"><span></span></a></div>
+            </div>
+        </div>
+        <div class="gfp-error" *ngIf="errors.user_id">{{thelang.words[errors.user_id]}}</div>
+    </div> 
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['proposals-status']}}</label></div>
+        <div class="gfp-inputwrap">
+            <div class="selectwrap">
+                <select [(ngModel)]="x.status">
+                    <option value="created">{{thelang.words['proposals-status-created']}}</option>
+                    <option value="accepted">{{thelang.words['proposals-status-accepted']}}</option>
+                    <option value="rejected">{{thelang.words['proposals-status-rejected']}}</option>
+                </select>
+            </div>
+        </div>   
+    </div> 
+    <div class="gf-param">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('content')">{{thelang.words['proposals-content']}}</label></div>
+        <div class="gfp-inputwrap"><textarea [(ngModel)]="x.content" [class.error]="errors.content"></textarea></div>    
+        <div class="gfp-error" *ngIf="errors.content">{{thelang.words[errors.content]}}</div>           
+    </div>
+</div>

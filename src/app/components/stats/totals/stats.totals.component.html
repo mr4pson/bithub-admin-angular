@@ -1,0 +1,30 @@
+<div class="stats-totals">
+    <div class="st-item">
+        <div class="st-title">{{thelang.words['stats-totals-users']}}</div>
+        <div class="st-value">{{data.users}}</div>
+    </div>
+    <div class="st-item">
+        <div class="st-title">{{thelang.words['stats-totals-supers']}}</div>
+        <div class="st-value">{{data.supers}}</div>
+    </div>
+    <div class="st-item">
+        <div class="st-title">{{thelang.words['stats-totals-subs']}}</div>
+        <div class="st-value">{{data.subs}}</div>
+    </div>
+    <div class="st-item">
+        <div class="st-title">{{thelang.words['stats-totals-inorders-q']}}</div>
+        <div class="st-value">{{data.inorders_q}}</div>
+    </div>
+    <div class="st-item">
+        <div class="st-title">{{thelang.words['stats-totals-guides']}}</div>
+        <div class="st-value">{{data.guides}}</div>
+    </div>
+    <div class="st-item">
+        <div class="st-title">{{thelang.words['stats-totals-tasks']}}</div>
+        <div class="st-value">{{data.tasks}}</div>
+    </div>
+    <div class="st-item" *ngIf="showAmount">
+        <div class="st-title">{{thelang.words['stats-totals-inorders-amount']}}</div>
+        <div class="st-value">{{data.inorders_amount}} USD</div>
+    </div>
+</div>

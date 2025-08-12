@@ -1,0 +1,85 @@
+<div class="panel" [class.active]="active">
+    <div class="p-left" (click)="onClose()"></div>
+    <div class="p-right">
+        <div class="p-head">
+            <div class="p-title tasks">{{thelang.words["tasks-head"]}}</div>
+            <div class="roundbtn close" (click)="onClose()"><span></span></div>
+        </div>
+        <div class="p-content">
+            <div class="b-margined3">
+                <radio-by-entity [items]="ll" [(value)]="selectedLang" visibleField="slug" [title]="thelang.words['common-lang']+':'"></radio-by-entity>
+            </div>
+            <form class="generic-form" *ngIf="x" (submit)="onApply()">
+                <div class="gf-param b-margined3" *ngIf="x.id">
+                    <div class="gfp-title b-margined1"><label>ID</label></div>
+                    <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+                </div>
+                <div class="gf-param b-margined3" *ngIf="x.id">
+                    <div class="gfp-title b-margined1"><label>{{thelang.words['tasks-created-at']}}</label></div>
+                    <div class="gfp-inputwrap"><input type="text" [value]="x.formattedDate('created_at', true)" disabled></div>
+                </div>
+                <div class="gf-param b-margined3">
+                    <div class="gfp-title b-margined1"><label [class.required]="isRequired('name')">{{thelang.words['tasks-name']}} ({{selectedLang.slug}})</label></div>
+                    <div class="gfp-inputwrap"><input type="text" name="name_{{selectedLang.id}}" [dir]="selectedLang.dir" [(ngModel)]="x.translation(selectedLang.id).name" [class.error]="errors.name"></div>
+                    <div class="gfp-error" *ngIf="errors.name">{{thelang.words[errors.name]}}</div>
+                </div>
+                <div class="gf-param b-margined3">
+                    <div class="gfp-title b-margined1"><label>{{thelang.words['tasks-contenttype']}}</label></div>
+                    <div class="gfp-inputwrap">
+                        <div class="selectwrap">
+                            <select [(ngModel)]="x.contenttype" name="contenttype">
+                                <option value="html">{{thelang.words['tasks-contenttype-html']}}</option>
+                                <option value="yt">{{thelang.words['tasks-contenttype-yt']}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <ng-container *ngIf="x.contenttype === 'html'">
+                    <div class="gf-param b-margined3">
+                        <div class="gfp-title b-margined1"><label [class.required]="isRequired('content')">{{thelang.words['tasks-content']}} ({{selectedLang.slug}})</label></div>
+                        <div class="gfp-inputwrap"><text-editor [dir]="selectedLang.dir" [(value)]="x.translation(selectedLang.id).content" [error]="errors.content"></text-editor></div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="x.contenttype === 'yt'">
+                    <div class="gf-param b-margined3">
+                        <div class="gfp-title b-margined1"><label [class.required]="isRequired('yt_content')">{{thelang.words['tasks-yt-content']}}</label></div>
+                        <div class="gfp-inputwrap"><textarea name="yt_content" [(ngModel)]="x.yt_content" [class.error]="errors.yt_content"></textarea></div>
+                        <div class="gfp-error" *ngIf="errors.yt_content">{{thelang.words[errors.yt_content]}}</div>
+                    </div>
+                </ng-container>
+                <div class="gf-param b-margined3">
+                    <div class="gfp-title b-margined1"><label>{{thelang.words['tasks-price']}}</label></div>
+                    <div class="gfp-inputwrap"><input name="price" type="number" class="small" [(ngModel)]="x.price"></div>
+                </div>
+                <div class="gf-param b-margined3">
+                    <div class="gfp-title b-margined1"><label>{{thelang.words['tasks-time']}}</label></div>
+                    <div class="gfp-inputwrap"><input name="time" type="number" class="small" [(ngModel)]="x.time"></div>
+                </div>
+                <div class="gf-param b-margined3">
+                    <div class="gfp-title b-margined1"><label>{{thelang.words['tasks-type']}}</label></div>
+                    <div class="gfp-inputwrap">
+                        <div class="selectwrap">
+                            <select name="type" [(ngModel)]="x.type">
+                                <option value="main">{{thelang.words['tasks-type-main']}}</option>
+                                <option value="extra">{{thelang.words['tasks-type-extra']}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="gf-param b-margined3">
+                    <div class="gfp-title b-margined1"><label>{{thelang.words['tasks-actual-until']}}</label></div>
+                    <div class="gfp-inputwrap"><timestamp-picker [(value)]="x.actual_until" [resetable]="true" [resetvalue]="null"></timestamp-picker></div>
+                </div>
+                <div class="gf-param">
+                    <div class="gfp-title b-margined1"><label>{{thelang.words['tasks-pos']}}</label></div>
+                    <div class="gfp-inputwrap"><input name="pos" type="number" class="small" [(ngModel)]="x.pos"></div>
+                </div>
+                <button type="submit" class="hidden"></button>
+            </form>
+        </div>
+        <div class="p-foot">
+            <button type="button" class="neutral close" (click)="onClose()"><span>{{thelang.words['common-close']}}</span></button>
+            <button type="button" class="apply" (click)="onApply()"><span>{{thelang.words['common-apply']}}</span></button>
+        </div>
+    </div>
+</div>

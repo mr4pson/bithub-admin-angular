@@ -1,0 +1,38 @@
+<div class="generic-form">
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>ID</label></div>
+        <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+    </div>
+    <div class="gf-param b-margined3" *ngIf="x.id">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['promocodes-created-at']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [value]="x.formattedDate('created_at', true)" disabled></div>
+    </div>  
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label [class.required]="isRequired('code')">{{thelang.words['promocodes-code']}}</label></div>
+        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.code" [class.error]="errors.code"></div>   
+        <div class="gfp-error" *ngIf="errors.code">{{thelang.words[errors.code]}}</div>         
+    </div>      
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['promocodes-discount']}}</label></div>
+        <div class="gfp-inputwrap"><input type="number" class="small" [(ngModel)]="x.discount"></div>            
+    </div>
+    <div class="gf-param b-margined3">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['promocodes-limit']}}</label></div>
+        <div class="gfp-inputwrap">
+            <div class="selectwrap">
+                <select [(ngModel)]="x.limit">
+                    <option value="activation">{{thelang.words['promocodes-limit-activation']}}</option>
+                    <option value="date">{{thelang.words['promocodes-limit-date']}}</option>
+                </select>
+            </div>
+        </div>   
+    </div>   
+    <div class="gf-param b-margined3" *ngIf="x.limit === 'activation'">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['promocodes-activation-limit']}}</label></div>
+        <div class="gfp-inputwrap"><input type="number" class="small" [(ngModel)]="x.activation_limit"></div>            
+    </div>
+    <div class="gf-param b-margined3" *ngIf="x.limit === 'date'">
+        <div class="gfp-title b-margined1"><label>{{thelang.words['promocodes-activation-date']}}</label></div>
+        <div class="gfp-inputwrap"><timestamp-picker [(value)]="x.date_limit" [resetable]="false"></timestamp-picker></div>            
+    </div>
+</div>
