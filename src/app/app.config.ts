@@ -30,7 +30,8 @@ export interface IEditorCfg {
 
 const host = window.location.host;
 const configs: IKeyValue<IConfig> = {
-  'localhost:4200': {
+  'localhost:60284': {
+    // 'localhost:4200': {
     apiUrl: 'http://localhost:3030/api/admin',
     staticUrl: 'http://localhost:3030',
     backupUrl: 'http://localhost:3030',
