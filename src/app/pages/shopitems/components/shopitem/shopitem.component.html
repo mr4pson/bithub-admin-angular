@@ -1,51 +1,158 @@
-
 <div class="b-margined3">
-    <radio-by-entity [items]="ll" [(value)]="selectedLang" visibleField="slug" [title]="thelang.words['common-lang']+':'"></radio-by-entity>
+  <radio-by-entity
+    [items]="ll"
+    [(value)]="selectedLang"
+    visibleField="slug"
+    [title]="thelang.words['common-lang'] + ':'"
+  ></radio-by-entity>
 </div>
 <div class="generic-form">
-    <div class="gf-param b-margined3" *ngIf="x.id">
-        <div class="gfp-title b-margined1"><label>ID</label></div>
-        <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+  <div class="gf-param b-margined3" *ngIf="x.id">
+    <div class="gfp-title b-margined1"><label>ID</label></div>
+    <div class="gfp-inputwrap">
+      <input class="small" type="text" [value]="x.id" disabled />
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label [class.required]="isRequired('shopcat_id')">{{thelang.words['shopitems-shopcat']}}</label></div>
-        <div class="gfp-inputwrap">
-            <div class="inputwithbtns">
-                <select-simple [(value)]="x.shopcat_id" field="name" sortBy="pos" entity="shopcat" [multilang]="true" [useSearch]="false" [useNull]="true" [error]="errors.shopcat_id"></select-simple>
-                <div *ngIf="x.shopcat_id" class="iwb-btns"><a class="roundbtn link" target="_blank" href="/shop/shopcats/edit/{{x.shopcat_id}}"><span></span></a></div>
-            </div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label [class.required]="isRequired('shopcat_id')">{{
+        thelang.words["shopitems-shopcat"]
+      }}</label>
+    </div>
+    <div class="gfp-inputwrap">
+      <div class="inputwithbtns">
+        <select-simple
+          [(value)]="x.shopcat_id"
+          field="name"
+          sortBy="pos"
+          entity="shopcat"
+          [multilang]="true"
+          [useSearch]="false"
+          [useNull]="true"
+          [error]="errors.shopcat_id"
+        ></select-simple>
+        <div *ngIf="x.shopcat_id" class="iwb-btns">
+          <a
+            class="roundbtn link"
+            target="_blank"
+            href="/shop/shopcats/edit/{{ x.shopcat_id }}"
+            ><span></span
+          ></a>
         </div>
-        <div class="gfp-error" *ngIf="errors.shopcat_id">{{thelang.words[errors.shopcat_id]}}</div>
+      </div>
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label>{{thelang.words['shopitems-date']}}</label></div>
-        <div class="gfp-inputwrap"><date-picker [(value)]="x.date"></date-picker></div>
+    <div class="gfp-error" *ngIf="errors.shopcat_id">
+      {{ thelang.words[errors.shopcat_id] }}
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label [class.required]="isRequired('name')">{{thelang.words['shopitems-name']}} ({{selectedLang.slug}})</label></div>
-        <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.translation(selectedLang.id).name" [class.error]="errors.name"></div>
-        <div class="gfp-error" *ngIf="errors.name">{{thelang.words[errors.name]}}</div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label>{{ thelang.words["shopitems-date"] }}</label>
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label [class.required]="isRequired('content')">{{thelang.words['shopitems-content']}} ({{selectedLang.slug}})</label></div>
-        <div class="gfp-inputwrap"><text-editor [dir]="selectedLang.dir" [(value)]="x.translation(selectedLang.id).content" [error]="errors.content"></text-editor></div>
+    <div class="gfp-inputwrap">
+      <date-picker [(value)]="x.date"></date-picker>
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label [class.required]="isRequired('contentshort')">{{thelang.words['shopitems-contentshort']}} ({{selectedLang.slug}})</label></div>
-        <div class="gfp-inputwrap"><textarea [dir]="selectedLang.dir" [(ngModel)]="x.translation(selectedLang.id).contentshort" [class.error]="errors.contentshort"></textarea></div>
-        <div class="gfp-error" *ngIf="errors.contentshort">{{thelang.words[errors.contentshort]}}</div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label [class.required]="isRequired('name')"
+        >{{ thelang.words["shopitems-name"] }} ({{ selectedLang.slug }})</label
+      >
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label [class.required]="isRequired('img')">{{thelang.words['shopitems-img']}}</label></div>
-        <div class="gfp-inputwrap"><image-picker folder="shopitems" [(img)]="x.img" [error]="errors.img"></image-picker></div>
-        <div class="gfp-error" *ngIf="errors.img">{{thelang.words[errors.img]}}</div>
+    <div class="gfp-inputwrap">
+      <input
+        type="text"
+        [dir]="selectedLang.dir"
+        [(ngModel)]="x.translation(selectedLang.id).name"
+        [class.error]="errors.name"
+      />
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label>{{thelang.words['shopitems-price']}}</label></div>
-        <div class="gfp-inputwrap"><input class="small" type="number" [(ngModel)]="x.price" min="0"></div>
+    <div class="gfp-error" *ngIf="errors.name">
+      {{ thelang.words[errors.name] }}
     </div>
-    <div class="gf-param">
-        <div class="gfp-title b-margined1"><label>{{thelang.words['shopitems-active']}}</label></div>
-        <div class="gfp-inputwrap"><check-box [(value)]="x.active"></check-box></div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label [class.required]="isRequired('content')"
+        >{{ thelang.words["shopitems-content"] }} ({{
+          selectedLang.slug
+        }})</label
+      >
     </div>
+    <div class="gfp-inputwrap">
+      <text-editor
+        [dir]="selectedLang.dir"
+        [(value)]="x.translation(selectedLang.id).content"
+        [error]="errors.content"
+      ></text-editor>
+    </div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label [class.required]="isRequired('contentshort')"
+        >{{ thelang.words["shopitems-contentshort"] }} ({{
+          selectedLang.slug
+        }})</label
+      >
+    </div>
+    <div class="gfp-inputwrap">
+      <textarea
+        [dir]="selectedLang.dir"
+        [(ngModel)]="x.translation(selectedLang.id).contentshort"
+        [class.error]="errors.contentshort"
+      ></textarea>
+    </div>
+    <div class="gfp-error" *ngIf="errors.contentshort">
+      {{ thelang.words[errors.contentshort] }}
+    </div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label [class.required]="isRequired('img')">{{
+        thelang.words["shopitems-img"]
+      }}</label>
+    </div>
+    <div class="gfp-inputwrap">
+      <image-picker
+        folder="shopitems"
+        [(img)]="x.img"
+        [error]="errors.img"
+      ></image-picker>
+    </div>
+    <div class="gfp-error" *ngIf="errors.img">
+      {{ thelang.words[errors.img] }}
+    </div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label>{{ thelang.words["shopitems-price"] }}</label>
+    </div>
+    <div class="gfp-inputwrap">
+      <input class="small" type="number" [(ngModel)]="x.price" min="0" />
+    </div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label>{{ thelang.words["shopitems-min-num"] }}</label>
+    </div>
+    <div class="gfp-inputwrap">
+      <input
+        class="small"
+        type="number"
+        [(ngModel)]="x.min_items_num"
+        min="1"
+      />
+      <span style="margin-left: 10px"
+        >{{ thelang.words["shopitems-min-price"] }} (${{ minimalPrice }})</span
+      >
+    </div>
+  </div>
+  <div class="gf-param">
+    <div class="gfp-title b-margined1">
+      <label>{{ thelang.words["shopitems-active"] }}</label>
+    </div>
+    <div class="gfp-inputwrap">
+      <check-box [(value)]="x.active"></check-box>
+    </div>
+  </div>
 </div>
