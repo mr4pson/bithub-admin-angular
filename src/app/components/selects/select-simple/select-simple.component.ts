@@ -25,8 +25,7 @@ import { CArtcatRepository } from 'src/app/services/repositories/artcat.reposito
 import { CGuideRepository } from 'src/app/services/repositories/guide.repository';
 import { CShopcatRepository } from 'src/app/services/repositories/shopcat.repository';
 import { CShopitemRepository } from 'src/app/services/repositories/shopitem.repository';
-import { GuideTypes } from 'src/app/model/guide-type.enum';
-import { GUIDE_TYPES } from './constants';
+import { AVAILABLE_FOR_LIST, GUIDE_TYPES } from './constants';
 
 @Component({
   selector: 'select-simple',
@@ -135,14 +134,28 @@ export class CSelectSimpleComponent implements OnInit, OnChanges {
       } else if (this.value === null) {
         this.title = this.thelang.words['common-empty2'];
       } else {
-        const sitem =
-          this.entity === 'guide_type'
-            ? GUIDE_TYPES.find(
-                (type) =>
-                  type.id === this.value ||
-                  type.translations[0].type === this.value
-              )
-            : await this.sitemsRepository.loadOne(this.value);
+        let sitem: CTranslatableEntity<any>;
+
+        switch (this.entity) {
+          case 'guide_type':
+            sitem = GUIDE_TYPES.find(
+              (type) =>
+                type.id === this.value ||
+                type.translations[0].type === this.value
+            );
+            break;
+          case 'available_for':
+            sitem = AVAILABLE_FOR_LIST.find(
+              (type) =>
+                type.id === this.value ||
+                type.translations[0].type === this.value
+            );
+            break;
+
+          default:
+            sitem = await this.sitemsRepository.loadOne(this.value);
+            break;
+        }
 
         if (sitem) {
           const fieldText = this.field
@@ -170,9 +183,16 @@ export class CSelectSimpleComponent implements OnInit, OnChanges {
 
       if (this.entity === 'guide_type') {
         this.sitems = GUIDE_TYPES;
-
-        this.sitemsExhausted = false;
         this.sitemsReady = true;
+        this.sitemsExhausted = false;
+
+        return;
+      }
+
+      if (this.entity === 'available_for') {
+        this.sitems = AVAILABLE_FOR_LIST;
+        this.sitemsReady = true;
+        this.sitemsExhausted = false;
 
         return;
       }

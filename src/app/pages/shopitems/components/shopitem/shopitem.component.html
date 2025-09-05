@@ -73,6 +73,31 @@
   </div>
   <div class="gf-param b-margined3">
     <div class="gfp-title b-margined1">
+      <!-- <label [class.required]="isRequired('cat_id')">{{
+          thelang.words["guides-cat"]
+        }}</label> -->
+      <label [class.required]="isRequired('cat_id')">Available for</label>
+    </div>
+    <div class="gfp-inputwrap">
+      <div class="inputwithbtns">
+        <select-simple
+          [(value)]="x.available_for"
+          field="name"
+          sortBy="pos"
+          entity="available_for"
+          [multilang]="true"
+          [useSearch]="false"
+          [useNull]="true"
+          [error]="errors.available_for"
+        ></select-simple>
+      </div>
+    </div>
+    <!-- <div class="gfp-error" *ngIf="errors.available_for">
+        {{ thelang.words[errors.available_for] }}
+      </div> -->
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
       <label [class.required]="isRequired('content')"
         >{{ thelang.words["shopitems-content"] }} ({{
           selectedLang.slug

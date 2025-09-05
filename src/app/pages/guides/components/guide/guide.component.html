@@ -90,13 +90,13 @@
             [multilang]="true"
             [useSearch]="false"
             [useNull]="true"
-            [error]="errors.cat_id"
+            [error]="errors.type"
           ></select-simple>
         </div>
       </div>
-      <div class="gfp-error" *ngIf="errors.cat_id">
-        {{ thelang.words[errors.cat_id] }}
-      </div>
+      <!-- <div class="gfp-error" *ngIf="errors.type">
+        {{ thelang.words[errors.type] }}
+      </div> -->
     </div>
     <div
       *ngIf="x.type === limitAfterAuthGuideType || x.type === 3"

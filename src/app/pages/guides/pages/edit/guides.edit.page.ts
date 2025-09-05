@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CEntityPage } from 'src/app/pages/entity.page';
+import { GUIDE_TYPES } from 'src/app/components/selects/select-simple/constants';
 import { CGuide } from 'src/app/model/entities/guide';
 import { CLang } from 'src/app/model/entities/lang';
+import { CEntityPage } from 'src/app/pages/entity.page';
 import { CAppService } from 'src/app/services/app.service';
-import { CLangRepository } from 'src/app/services/repositories/lang.repository';
-import { CGuideRepository } from 'src/app/services/repositories/guide.repository';
 import { CAuthService } from 'src/app/services/auth.service';
-import { GUIDE_TYPES } from 'src/app/components/selects/select-simple/constants';
+import { CGuideRepository } from 'src/app/services/repositories/guide.repository';
+import { CLangRepository } from 'src/app/services/repositories/lang.repository';
 
 @Component({
   selector: 'guides-edit-page',
@@ -98,13 +98,14 @@ export class CGuidesEditPage extends CEntityPage<CGuide> implements OnInit {
       this.appService.monitorLog(`updating object...`);
       await this.repository.update({
         ...this.x,
-        type: currentType.translations[0].type,
+        type: currentType?.translations[0].type,
       } as CGuide);
       this.appService.monitorLog(`object updated`);
       await this.appService.pause(500);
       this.reloading = false;
       this.router.navigateByUrl(this.homeUrl);
     } catch (err) {
+      console.log(err);
       this.appService.monitorLog(`error: ${err}`, true);
       await this.appService.pause(500);
       this.reloading = false;

@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { CEntityPage } from 'src/app/pages/entity.page';
+import { GUIDE_TYPES } from 'src/app/components/selects/select-simple/constants';
 import { CGuide } from 'src/app/model/entities/guide';
 import { CLang } from 'src/app/model/entities/lang';
+import { CEntityPage } from 'src/app/pages/entity.page';
 import { CAppService } from 'src/app/services/app.service';
-import { CLangRepository } from 'src/app/services/repositories/lang.repository';
 import { CGuideRepository } from 'src/app/services/repositories/guide.repository';
-import { GUIDE_TYPES } from 'src/app/components/selects/select-simple/constants';
+import { CLangRepository } from 'src/app/services/repositories/lang.repository';
 
 @Component({
   selector: 'guides-create-page',

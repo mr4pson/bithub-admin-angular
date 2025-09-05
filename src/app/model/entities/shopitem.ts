@@ -12,6 +12,7 @@ export class CShopitem extends CTranslatableEntity<IShopitemTranslation> {
   public img: string | File;
   public price: number;
   public min_items_num: number;
+  public available_for?: string;
   public active: boolean;
   // relations
   public shopcat?: CShopcat;

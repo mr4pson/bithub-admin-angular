@@ -75,3 +75,62 @@ export const GUIDE_TYPES = [
     translation: translation,
   } as CTranslatableEntity<any>,
 ];
+
+export const AVAILABLE_FOR_LIST = [
+  {
+    id: 1,
+    __shift: '',
+    translations: [
+      {
+        id: 1,
+        lang_id: 1,
+        type: undefined,
+        name: 'Available to everyone',
+      },
+    ],
+    build: build,
+    translation: translation,
+  } as CTranslatableEntity<any>,
+  {
+    id: 2,
+    __shift: '',
+    translations: [
+      {
+        id: 1,
+        lang_id: 1,
+        type: 'dg-free',
+        name: 'Available to registered users',
+      },
+    ],
+    build: build,
+    translation: translation,
+  } as CTranslatableEntity<any>,
+  {
+    id: 3,
+    __shift: '',
+    translations: [
+      {
+        id: 1,
+        lang_id: 1,
+        type: 'dg-pro',
+        name: 'Available to DG PRO',
+      },
+    ],
+    build: build,
+    translation: translation,
+  } as CTranslatableEntity<any>,
+  {
+    id: 4,
+    __shift: '',
+    translations: [
+      {
+        id: 1,
+        lang_id: 1,
+        type: 'dg-team',
+        name: 'Available to DG TEAM',
+      },
+    ],
+    build: build,
+    translation: translation,
+  } as CTranslatableEntity<any>,
+];
