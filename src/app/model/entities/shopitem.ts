@@ -15,6 +15,7 @@ export class CShopitem extends CTranslatableEntity<IShopitemTranslation> {
   public available_for?: string;
   public discount?: number;
   public active: boolean;
+  public priceStep?: number;
   // relations
   public shopcat?: CShopcat;
 
