@@ -73,10 +73,9 @@
   </div>
   <div class="gf-param b-margined3">
     <div class="gfp-title b-margined1">
-      <!-- <label [class.required]="isRequired('cat_id')">{{
-          thelang.words["guides-cat"]
-        }}</label> -->
-      <label [class.required]="isRequired('cat_id')">Available for</label>
+      <label [class.required]="isRequired('available_for')">{{
+        thelang.words["available-for"]
+      }}</label>
     </div>
     <div class="gfp-inputwrap">
       <div class="inputwithbtns">
@@ -96,6 +95,34 @@
         {{ thelang.words[errors.available_for] }}
       </div> -->
   </div>
+  <ng-container *ngIf="['dg-team', 4].includes(x.available_for)">
+    <div class="gf-param">
+      <div class="gfp-title b-margined1">
+        <label>{{ thelang.words["apply-discount"] }}</label>
+      </div>
+      <div class="gfp-inputwrap">
+        <check-box
+          [(value)]="applyDiscount"
+          (valueChange)="handleApplyDiscountChange($event)"
+        ></check-box>
+      </div>
+    </div>
+    <div *ngIf="applyDiscount" class="gf-param b-margined3">
+      <div class="gfp-title b-margined1">
+        <label>{{ thelang.words["discount"] }}</label>
+      </div>
+      <div class="gfp-inputwrap">
+        <input
+          class="small"
+          type="number"
+          [(ngModel)]="x.discount"
+          min="0"
+          max="100"
+        />
+      </div>
+    </div>
+  </ng-container>
+
   <div class="gf-param b-margined3">
     <div class="gfp-title b-margined1">
       <label [class.required]="isRequired('content')"

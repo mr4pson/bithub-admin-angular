@@ -13,6 +13,7 @@ export class CShopitem extends CTranslatableEntity<IShopitemTranslation> {
   public price: number;
   public min_items_num: number;
   public available_for?: string;
+  public discount?: number;
   public active: boolean;
   // relations
   public shopcat?: CShopcat;
