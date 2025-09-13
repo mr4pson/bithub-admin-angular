@@ -9,6 +9,7 @@ export class CShoporder extends CEntity {
   }>;
   public email: string;
   public tg: string;
+  public wallet: string;
   public comment: string;
   public status: TShoporderStatus;
   public created_at: Date;
