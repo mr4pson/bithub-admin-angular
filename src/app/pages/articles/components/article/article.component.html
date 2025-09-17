@@ -29,8 +29,7 @@
     </div>
     <div class="gf-param">
       <div class="gfp-title b-margined1">
-        <!-- <label>{{ thelang.words["articles-active"] }}</label> -->
-        <label>Is for landing</label>
+        <label>{{ thelang.words["articles-for-landing"] }}</label>
       </div>
       <div class="gfp-inputwrap">
         <check-box [(value)]="x.is_for_landing"></check-box>
@@ -273,6 +272,24 @@
       </div>
       <div class="gfp-error" *ngIf="errors.description">
         {{ thelang.words[errors.description] }}
+      </div>
+    </div>
+    <div class="gf-param b-margined3">
+      <div class="gfp-title b-margined1">
+        <label [class.required]="isRequired('canonical')">{{
+          thelang.words["articles-canonical"]
+        }}</label>
+      </div>
+      <div class="gfp-inputwrap">
+        <input
+          [dir]="selectedLang.dir"
+          type="text"
+          [(ngModel)]="x.translation(selectedLang.id).canonical"
+          [class.error]="errors.canonical"
+        />
+      </div>
+      <div class="gfp-error" *ngIf="errors.canonical">
+        {{ thelang.words[errors.canonical] }}
       </div>
     </div>
     <div class="gf-param">
