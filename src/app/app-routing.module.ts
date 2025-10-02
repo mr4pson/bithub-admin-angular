@@ -32,44 +32,166 @@ import { CShopitemsModule } from './pages/shopitems/shopitems.module';
 import { CShopordersModule } from './pages/shoporders/shoporders.module';
 import { CMailingsModule } from './pages/mailings/mailings.module';
 import { CDropsModule } from './pages/drops/drops.module';
+import { CWithdrawalModule } from './pages/withdrawals/withdrawals.module';
 
 const routes: Routes = [
-	{path: "", component: CHomePage, canActivate: [CAuthGuard]},
-	{path: "auth", loadChildren: () => CAuthModule},
-	{path: "options", loadChildren: () => COptionsModule, canActivate: [CAuthGuard]},
-	{path: "settings", loadChildren: () => CSettingsModule, canActivate: [CAuthGuard]},
-	{path: "admins", loadChildren: () => CAdminsModule, canActivate: [CAuthGuard]},
-	{path: "localization/langs", loadChildren: () => CLangsModule, canActivate: [CAuthGuard]},
-	{path: "localization/wordbooks", loadChildren: () => CWordbooksModule, canActivate: [CAuthGuard]},
-	{path: "files", loadChildren: () => CFilesModule, canActivate: [CAuthGuard]},
-	{path: "backups", loadChildren: () => CBackupsModule, canActivate: [CAuthGuard]},
-	{path: "mailtemplates", loadChildren: () => CMailtemplatesModule, canActivate: [CAuthGuard]},
-	{path: "mailings", loadChildren: () => CMailingsModule, canActivate: [CAuthGuard]},
-	{path: "pages", loadChildren: () => CPagesModule, canActivate: [CAuthGuard]},
-	{path: "catalogue/cats", loadChildren: () => CCatsModule, canActivate: [CAuthGuard]},
-	{path: "catalogue/linktypes", loadChildren: () => CLinktypesModule, canActivate: [CAuthGuard]},
-	{path: "catalogue/guides", loadChildren: () => CGuidesModule, canActivate: [CAuthGuard]},
-	{path: "catalogue/proposals", loadChildren: () => CProposalsModule, canActivate: [CAuthGuard]},
-	{path: "catalogue/comments", loadChildren: () => CCommentsModule, canActivate: [CAuthGuard]},
-	{path: "finances/tariffs", loadChildren: () => CTariffsModule, canActivate: [CAuthGuard]},
-	{path: "finances/promocodes", loadChildren: () => CPromocodesModule, canActivate: [CAuthGuard]},
-	{path: "finances/inorders", loadChildren: () => CInordersModule, canActivate: [CAuthGuard]},
-	{path: "finances/outorders", loadChildren: () => COutordersModule, canActivate: [CAuthGuard]},
-	{path: "finances/reforders", loadChildren: () => CRefordersModule, canActivate: [CAuthGuard]},
-	{path: "education/artcats", loadChildren: () => CArtcatsModule, canActivate: [CAuthGuard]},
-	{path: "education/articles", loadChildren: () => CArticlesModule, canActivate: [CAuthGuard]},
-	{path: "misc/awards", loadChildren: () => CAwardsModule, canActivate: [CAuthGuard]},
-	{path: "misc/baxers", loadChildren: () => CBaxersModule, canActivate: [CAuthGuard]},
-	{path: "misc/drops", loadChildren: () => CDropsModule, canActivate: [CAuthGuard]},
-	{path: "shop/shopcats", loadChildren: () => CShopcatsModule, canActivate: [CAuthGuard]},
-	{path: "shop/shopitems", loadChildren: () => CShopitemsModule, canActivate: [CAuthGuard]},
-	{path: "shop/shoporders", loadChildren: () => CShopordersModule, canActivate: [CAuthGuard]},
-	{path: "users", loadChildren: () => CUsersModule, canActivate: [CAuthGuard]},
-	{path: "**", redirectTo: "/"},
+  { path: '', component: CHomePage, canActivate: [CAuthGuard] },
+  { path: 'auth', loadChildren: () => CAuthModule },
+  {
+    path: 'options',
+    loadChildren: () => COptionsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'settings',
+    loadChildren: () => CSettingsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'admins',
+    loadChildren: () => CAdminsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'localization/langs',
+    loadChildren: () => CLangsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'localization/wordbooks',
+    loadChildren: () => CWordbooksModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'files',
+    loadChildren: () => CFilesModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'backups',
+    loadChildren: () => CBackupsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'mailtemplates',
+    loadChildren: () => CMailtemplatesModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'mailings',
+    loadChildren: () => CMailingsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'pages',
+    loadChildren: () => CPagesModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'catalogue/cats',
+    loadChildren: () => CCatsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'catalogue/linktypes',
+    loadChildren: () => CLinktypesModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'catalogue/guides',
+    loadChildren: () => CGuidesModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'catalogue/proposals',
+    loadChildren: () => CProposalsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'catalogue/comments',
+    loadChildren: () => CCommentsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'finances/tariffs',
+    loadChildren: () => CTariffsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'finances/promocodes',
+    loadChildren: () => CPromocodesModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'finances/inorders',
+    loadChildren: () => CInordersModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'finances/withdrawals',
+    loadChildren: () => CWithdrawalModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'finances/outorders',
+    loadChildren: () => COutordersModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'finances/reforders',
+    loadChildren: () => CRefordersModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'education/artcats',
+    loadChildren: () => CArtcatsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'education/articles',
+    loadChildren: () => CArticlesModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'misc/awards',
+    loadChildren: () => CAwardsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'misc/baxers',
+    loadChildren: () => CBaxersModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'misc/drops',
+    loadChildren: () => CDropsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'shop/shopcats',
+    loadChildren: () => CShopcatsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'shop/shopitems',
+    loadChildren: () => CShopitemsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'shop/shoporders',
+    loadChildren: () => CShopordersModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'users',
+    loadChildren: () => CUsersModule,
+    canActivate: [CAuthGuard],
+  },
+  { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
-	exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class CAppRoutingModule { }
+export class CAppRoutingModule {}
