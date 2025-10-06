@@ -628,6 +628,9 @@ export class CDataService {
   public mailingsRun(id: number): Observable<IResponse<void>> {
     return this.sendRequest(`mailings/run/${id}`);
   }
+  public mailingsRunForAll(id: number): Observable<IResponse<void>> {
+    return this.sendRequest(`mailings/run-for-all/${id}`);
+  }
 
   public dropsChunk(dto: IGetList): Observable<IResponse<IDrop[]>> {
     return this.sendRequest('drops/chunk', dto);
