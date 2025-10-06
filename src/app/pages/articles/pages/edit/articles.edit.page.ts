@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CEntityPage } from 'src/app/pages/entity.page';
 import { CArticle } from 'src/app/model/entities/article';
@@ -13,10 +13,14 @@ import { CArticleRepository } from 'src/app/services/repositories/article.reposi
   styleUrls: ['../../../../styles/forms.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class CArticlesEditPage extends CEntityPage<CArticle> implements OnInit {
+export class CArticlesEditPage
+  extends CEntityPage<CArticle>
+  implements OnInit, OnDestroy
+{
   public homeUrl: string = '/education/articles';
   public requiredFields: string[] = ['name', 'slug', 'img'];
   public ll: CLang[] = [];
+  private intervalFn: NodeJS.Timeout;
 
   constructor(
     protected articleRepository: CArticleRepository,
@@ -39,9 +43,20 @@ export class CArticlesEditPage extends CEntityPage<CArticle> implements OnInit {
       this.ll = await this.langRepository.loadAll();
       this.appService.monitorLog('[articles edit] page loaded');
       this.ready = true;
+
+      this.intervalFn = setInterval(() => {
+        if (this.validate()) {
+          this.appService.monitorLog(`autosave`);
+          this.save();
+        }
+      }, 30_000);
     } catch (err) {
       this.appService.monitorLog(err, true);
     }
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalFn);
   }
 
   protected validate(): boolean {
@@ -69,5 +84,16 @@ export class CArticlesEditPage extends CEntityPage<CArticle> implements OnInit {
     }
 
     return !error;
+  }
+
+  private async save() {
+    this.reloading = true;
+    this.appService.monitorLog(`updating object...`);
+    await this.repository.update({
+      ...this.x,
+    } as CArticle);
+    this.appService.monitorLog(`object updated`);
+    await this.appService.pause(500);
+    this.reloading = false;
   }
 }

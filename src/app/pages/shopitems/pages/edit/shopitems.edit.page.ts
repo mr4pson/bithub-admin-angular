@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AVAILABLE_FOR_LIST } from 'src/app/components/selects/select-simple/constants';
 import { CLang } from 'src/app/model/entities/lang';
@@ -16,11 +16,12 @@ import { CShopitemRepository } from 'src/app/services/repositories/shopitem.repo
 })
 export class CShopitemsEditPage
   extends CEntityPage<CShopitem>
-  implements OnInit
+  implements OnInit, OnDestroy
 {
   public homeUrl: string = '/shop/shopitems';
   public requiredFields: string[] = ['name', 'img'];
   public ll: CLang[] = [];
+  private intervalFn: NodeJS.Timeout;
 
   constructor(
     protected shopitemRepository: CShopitemRepository,
@@ -43,9 +44,20 @@ export class CShopitemsEditPage
       this.ll = await this.langRepository.loadAll();
       this.appService.monitorLog('[shopitems edit] page loaded');
       this.ready = true;
+
+      this.intervalFn = setInterval(() => {
+        if (this.validate()) {
+          this.appService.monitorLog('autosave');
+          this.save();
+        }
+      }, 30_000);
     } catch (err) {
       this.appService.monitorLog(err, true);
     }
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalFn);
   }
 
   protected validate(): boolean {
@@ -91,21 +103,8 @@ export class CShopitemsEditPage
     try {
       if (!this.validate()) return;
 
-      const currentAvailableFor = AVAILABLE_FOR_LIST.find(
-        (availableForItem) =>
-          (this.x.available_for as unknown as number) === availableForItem.id ||
-          availableForItem.translations[0].type === this.x.available_for
-      );
+      await this.save();
 
-      this.reloading = true;
-      this.appService.monitorLog(`updating object...`);
-      await this.repository.update({
-        ...this.x,
-        available_for: currentAvailableFor?.translations[0].type,
-      } as CShopitem);
-      this.appService.monitorLog(`object updated`);
-      await this.appService.pause(500);
-      this.reloading = false;
       this.router.navigateByUrl(this.homeUrl);
     } catch (err) {
       console.log(err);
@@ -113,5 +112,23 @@ export class CShopitemsEditPage
       await this.appService.pause(500);
       this.reloading = false;
     }
+  }
+
+  private async save() {
+    const currentAvailableFor = AVAILABLE_FOR_LIST.find(
+      (availableForItem) =>
+        (this.x.available_for as unknown as number) === availableForItem.id ||
+        availableForItem.translations[0].type === this.x.available_for
+    );
+
+    this.reloading = true;
+    this.appService.monitorLog(`updating object...`);
+    await this.repository.update({
+      ...this.x,
+      available_for: currentAvailableFor?.translations[0].type,
+    } as CShopitem);
+    this.appService.monitorLog(`object updated`);
+    await this.appService.pause(500);
+    this.reloading = false;
   }
 }

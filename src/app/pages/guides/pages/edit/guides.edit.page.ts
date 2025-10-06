@@ -51,16 +51,16 @@ export class CGuidesEditPage
       this.ll = await this.langRepository.loadAll();
       this.appService.monitorLog('[guides edit] page loaded');
       this.ready = true;
+
+      this.intervalFn = setInterval(() => {
+        if (this.validate()) {
+          this.appService.monitorLog('autosave');
+          this.save();
+        }
+      }, 30_000);
     } catch (err) {
       this.appService.monitorLog(err, true);
     }
-
-    this.intervalFn = setInterval(() => {
-      if (this.validate()) {
-        console.log('autosave');
-        this.save();
-      }
-    }, 30_000);
   }
 
   ngOnDestroy(): void {
