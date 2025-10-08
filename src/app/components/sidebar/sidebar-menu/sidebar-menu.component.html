@@ -70,6 +70,7 @@
         ><span>{{ thelang.words["sidebar-users"] }}</span></a
       >
       <a
+        *ngIf="group_id === 1 || group_id === 2"
         class="catalogue expandable"
         [class.expanded]="subActive.catalogue"
         [class.active]="url[1] === 'catalogue'"
@@ -107,7 +108,11 @@
         (click)="toggleSub('finances')"
         ><span>{{ thelang.words["sidebar-finances"] }}</span></a
       >
-      <div class="sbn-sub" [class.active-5]="subActive.finances">
+      <div
+        *ngIf="group_id === 1 || group_id === 2"
+        class="sbn-sub"
+        [class.active-5]="subActive.finances"
+      >
         <a [class.active]="url[2] === 'tariffs'" routerLink="/finances/tariffs"
           ><span>{{ thelang.words["sidebar-tariffs"] }}</span></a
         >
@@ -138,13 +143,18 @@
         >
       </div>
       <a
+        *ngIf="group_id === 1 || group_id === 2"
         class="education expandable"
         [class.expanded]="subActive.education"
         [class.active]="url[1] === 'education'"
         (click)="toggleSub('education')"
         ><span>{{ thelang.words["sidebar-education"] }}</span></a
       >
-      <div class="sbn-sub" [class.active-2]="subActive.education">
+      <div
+        *ngIf="group_id === 1 || group_id === 2"
+        class="sbn-sub"
+        [class.active-2]="subActive.education"
+      >
         <a
           [class.active]="url[2] === 'articles'"
           routerLink="/education/articles"
@@ -155,13 +165,18 @@
         >
       </div>
       <a
+        *ngIf="group_id === 1 || group_id === 2"
         class="shop expandable"
         [class.expanded]="subActive.shop"
         [class.active]="url[1] === 'shop'"
         (click)="toggleSub('shop')"
         ><span>{{ thelang.words["sidebar-shop"] }}</span></a
       >
-      <div class="sbn-sub" [class.active-3]="subActive.shop">
+      <div
+        *ngIf="group_id === 1 || group_id === 2"
+        class="sbn-sub"
+        [class.active-3]="subActive.shop"
+      >
         <a [class.active]="url[2] === 'shopcats'" routerLink="/shop/shopcats"
           ><span>{{ thelang.words["sidebar-shopcats"] }}</span></a
         >
@@ -175,6 +190,7 @@
         >
       </div>
       <a
+        *ngIf="group_id === 1 || group_id === 2"
         class="misc expandable"
         [class.expanded]="subActive.misc"
         [class.active]="url[1] === 'misc'"
@@ -213,6 +229,7 @@
         ><span>{{ thelang.words["sidebar-mailings"] }}</span></a
       >
       <a
+        *ngIf="group_id === 1 || group_id === 2"
         class="backups"
         [class.active]="url[1] === 'backups'"
         routerLink="/backups"
