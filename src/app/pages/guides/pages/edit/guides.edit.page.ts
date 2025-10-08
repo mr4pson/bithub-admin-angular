@@ -52,19 +52,19 @@ export class CGuidesEditPage
       this.appService.monitorLog('[guides edit] page loaded');
       this.ready = true;
 
-      this.intervalFn = setInterval(() => {
-        if (this.validate()) {
-          this.appService.monitorLog('autosave');
-          this.save();
-        }
-      }, 30_000);
+      // this.intervalFn = setInterval(() => {
+      //   if (this.validate()) {
+      //     this.appService.monitorLog('autosave');
+      //     this.save();
+      //   }
+      // }, 30_000);
     } catch (err) {
       this.appService.monitorLog(err, true);
     }
   }
 
   ngOnDestroy(): void {
-    clearInterval(this.intervalFn);
+    // clearInterval(this.intervalFn);
   }
 
   protected validate(): boolean {
