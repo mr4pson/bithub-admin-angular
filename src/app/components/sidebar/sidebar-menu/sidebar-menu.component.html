@@ -63,7 +63,7 @@
         ><span>{{ thelang.words["sidebar-pages"] }}</span></a
       >
       <a
-        *ngIf="group_id === 1"
+        *ngIf="group_id === 1 || group_id === 3"
         class="users"
         [class.active]="url[1] === 'users'"
         routerLink="/users"
@@ -100,7 +100,7 @@
         >
       </div>
       <a
-        *ngIf="group_id === 1"
+        *ngIf="group_id === 1 || group_id === 3"
         class="finances expandable"
         [class.expanded]="subActive.finances"
         [class.active]="url[1] === 'finances'"
@@ -194,7 +194,7 @@
       </div>
     </div>
   </section>
-  <section *ngIf="group_id === 1">
+  <section *ngIf="group_id === 1 || group_id === 3">
     <div class="sbn-head">
       <div class="sbn-head1">{{ thelang.words["sidebar-utils-head1"] }}</div>
       <div class="sbn-head2">{{ thelang.words["sidebar-utils-head2"] }}</div>
