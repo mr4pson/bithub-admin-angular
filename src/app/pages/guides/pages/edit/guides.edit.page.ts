@@ -52,19 +52,19 @@ export class CGuidesEditPage
       this.appService.monitorLog('[guides edit] page loaded');
       this.ready = true;
 
-      // this.intervalFn = setInterval(() => {
-      //   if (this.validate()) {
-      //     this.appService.monitorLog('autosave');
-      //     this.save();
-      //   }
-      // }, 30_000);
+      this.intervalFn = setInterval(() => {
+        if (this.validate()) {
+          this.appService.monitorLog('autosave');
+          this.save(true);
+        }
+      }, 30_000);
     } catch (err) {
       this.appService.monitorLog(err, true);
     }
   }
 
   ngOnDestroy(): void {
-    // clearInterval(this.intervalFn);
+    clearInterval(this.intervalFn);
   }
 
   protected validate(): boolean {
@@ -115,7 +115,7 @@ export class CGuidesEditPage
     }
   }
 
-  private async save() {
+  private async save(autosave = false) {
     const currentType = GUIDE_TYPES.find(
       (type) =>
         (this.x.type as unknown as number) === type.id ||
@@ -127,6 +127,7 @@ export class CGuidesEditPage
     await this.repository.update({
       ...this.x,
       type: currentType?.translations[0].type,
+      autosave,
     } as CGuide);
     this.appService.monitorLog(`object updated`);
     await this.appService.pause(500);

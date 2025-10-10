@@ -27,6 +27,7 @@ export class CGuide extends CTranslatableEntity<IGuideTranslation> {
   public links?: IGuideLink[];
   public tasks?: CTask[];
   public cat?: CCat;
+  public autosave?: boolean;
 
   public build(o: IGuide): CGuide {
     for (let field in o) {

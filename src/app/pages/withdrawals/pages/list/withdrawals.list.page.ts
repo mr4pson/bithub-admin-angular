@@ -4,6 +4,7 @@ import { CListPage } from 'src/app/pages/list.page';
 import { CAppService } from 'src/app/services/app.service';
 import { CWithdraworderRepository } from 'src/app/services/repositories/withdraworder.repository';
 import { CWithdrawordersListService } from '../../services/withdraworders.list.service';
+import { CAuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'withdrawals-list-page',
@@ -17,9 +18,14 @@ export class CWithdrawalsListPage
 {
   public homeUrl: string = '/finances/withdrawals';
 
+  get isAdminSeller() {
+    return this.authService.admin.group_id === 3;
+  }
+
   constructor(
     protected withdraworderRepository: CWithdraworderRepository,
     protected appService: CAppService,
+    protected authService: CAuthService,
     protected listService: CWithdrawordersListService
   ) {
     super(withdraworderRepository, appService, listService);

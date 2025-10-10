@@ -101,18 +101,13 @@
         >
       </div>
       <a
-        *ngIf="group_id === 1 || group_id === 2"
         class="finances expandable"
         [class.expanded]="subActive.finances"
         [class.active]="url[1] === 'finances'"
         (click)="toggleSub('finances')"
         ><span>{{ thelang.words["sidebar-finances"] }}</span></a
       >
-      <div
-        *ngIf="group_id === 1 || group_id === 2"
-        class="sbn-sub"
-        [class.active-5]="subActive.finances"
-      >
+      <div class="sbn-sub" [class.active-5]="subActive.finances">
         <a [class.active]="url[2] === 'tariffs'" routerLink="/finances/tariffs"
           ><span>{{ thelang.words["sidebar-tariffs"] }}</span></a
         >

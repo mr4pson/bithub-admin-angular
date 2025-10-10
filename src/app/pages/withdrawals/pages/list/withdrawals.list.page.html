@@ -15,6 +15,7 @@
       <span></span>
     </div>
     <div
+      *ngIf="!isAdminSeller"
       class="ph-btn roundbtn red delete"
       [class.disabled]="!canBulk"
       (click)="deleteBulk()"
@@ -134,7 +135,7 @@
             >
           </th>
           <th>{{thelang.words['withdrawals-completed']}}</th>
-          <th>{{thelang.words['common-actions']}}</th>
+          <th *ngIf="!isAdminSeller">{{thelang.words['common-actions']}}</th>
         </tr>
         <ng-container *ngIf="xl.length">
           <tr *ngFor="let x of xl">
@@ -153,7 +154,7 @@
             <td>
               <check-box [(value)]="x.completed" [disabled]="true"></check-box>
             </td>
-            <td>
+            <td *ngIf="!isAdminSeller">
               <div class="l-actions">
                 <a
                   class="roundbtn edit"
