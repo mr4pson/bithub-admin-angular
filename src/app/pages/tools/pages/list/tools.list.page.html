@@ -1,6 +1,6 @@
 <div class="page-head">
   <div class="ph-title">
-    <div class="ph-h1">{{thelang.words["outorders-head"]}}</div>
+    <div class="ph-h1">{{thelang.words["tools-head"]}}</div>
     <div class="ph-h2">
       {{thelang.words["common-length"]}}: {{elementsQuantity}}
     </div>
@@ -15,7 +15,13 @@
       <span></span>
     </div>
     <div
-      *ngIf="!isAdminSeller"
+      class="ph-btn roundbtn violet create"
+      routerLink="{{homeUrl}}/create"
+      [title]="thelang.words['common-create']"
+    >
+      <span></span>
+    </div>
+    <div
       class="ph-btn roundbtn red delete"
       [class.disabled]="!canBulk"
       (click)="deleteBulk()"
@@ -36,53 +42,33 @@
             {{thelang.words['common-filter']}}
           </div>
           <div class="gf-param b-margined3">
-            <div class="gf-title b-margined1">
-              {{thelang.words['outorders-user-email']}}
+            <div class="gfp-title b-margined1">
+              {{thelang.words['tools-name']}}
             </div>
             <div class="gfp-inputwrap">
               <input
                 type="text"
-                name="user_email"
-                [(ngModel)]="filter.user_email"
+                [dir]="selectedLang.dir"
+                name="name"
+                [(ngModel)]="filter.name"
               />
             </div>
           </div>
           <div class="gf-param b-margined3">
             <div class="gf-title b-margined1">
-              {{thelang.words['outorders-tg-username']}}
+              {{thelang.words['tools-toolcat']}}
             </div>
             <div class="gfp-inputwrap">
-              <input
-                type="text"
-                name="tg_username"
-                [(ngModel)]="filter.tg_username"
-              />
-            </div>
-          </div>
-          <div class="gf-param b-margined3">
-            <div class="gf-title b-margined1">
-              {{thelang.words['common-from']}}
-            </div>
-            <div class="gfp-inputwrap">
-              <timestamp-picker
-                [(value)]="filter.from"
-                [useTime]="true"
-                [resetable]="true"
-                [resetvalue]="undefined"
-              ></timestamp-picker>
-            </div>
-          </div>
-          <div class="gf-param b-margined3">
-            <div class="gf-title b-margined1">
-              {{thelang.words['common-to']}}
-            </div>
-            <div class="gfp-inputwrap">
-              <timestamp-picker
-                [(value)]="filter.to"
-                [useTime]="true"
-                [resetable]="true"
-                [resetvalue]="undefined"
-              ></timestamp-picker>
+              <select-simple
+                [(value)]="filter.toolcat_id"
+                field="name"
+                entity="toolcat"
+                sortBy="pos"
+                [multilang]="true"
+                [useSearch]="false"
+                [useNull]="true"
+                [useUndefined]="true"
+              ></select-simple>
             </div>
           </div>
           <div class="gf-2btnswrap">
@@ -97,6 +83,14 @@
             </button>
           </div>
         </form>
+      </div>
+      <div class="l-langs">
+        <radio-by-entity
+          [items]="ll"
+          [(value)]="selectedLang"
+          visibleField="slug"
+          [title]="thelang.words['common-lang']+':'"
+        ></radio-by-entity>
       </div>
       <table>
         <tr class="no-selection">
@@ -116,45 +110,16 @@
           </th>
           <th>
             <label
-              [class.sorted-forward]="sortBy === 'created_at' && sortDir === 1"
-              [class.sorted-backward]="sortBy === 'created_at' && sortDir === -1"
-              (click)="changeSorting('created_at')"
-              >{{thelang.words['outorders-created-at']}}</label
+              [class.sorted-forward]="sortBy === 'date' && sortDir === 1"
+              [class.sorted-backward]="sortBy === 'date' && sortDir === -1"
+              (click)="changeSorting('date')"
+              >{{thelang.words['tools-date']}}</label
             >
           </th>
-          <th>
-            <label
-              [class.sorted-forward]="sortBy === 'subType' && sortDir === 1"
-              [class.sorted-backward]="sortBy === 'subType' && sortDir === -1"
-              (click)="changeSorting('subType')"
-              >{{thelang.words['outorders-product-type']}}</label
-            >
-          </th>
-          <th>
-            <label
-              [class.sorted-forward]="sortBy === 'tg_username' && sortDir === 1"
-              [class.sorted-backward]="sortBy === 'tg_username' && sortDir === -1"
-              (click)="changeSorting('tg_username')"
-              >{{thelang.words['outorders-tg-username']}}</label
-            >
-          </th>
-          <th>
-            <label
-              [class.sorted-forward]="sortBy === 'user_email' && sortDir === 1"
-              [class.sorted-backward]="sortBy === 'user_email' && sortDir === -1"
-              (click)="changeSorting('user_email')"
-              >{{thelang.words['outorders-user-email']}}</label
-            >
-          </th>
-          <th>
-            <label
-              [class.sorted-forward]="sortBy === 'amount' && sortDir === 1"
-              [class.sorted-backward]="sortBy === 'amount' && sortDir === -1"
-              (click)="changeSorting('amount')"
-              >{{thelang.words['outorders-amount']}}</label
-            >
-          </th>
-          <th *ngIf="!isAdminSeller">{{thelang.words['common-actions']}}</th>
+          <th>{{thelang.words['tools-toolcat']}}</th>
+          <th>{{thelang.words['tools-name']}}</th>
+          <th>{{thelang.words['tools-active']}}</th>
+          <th>{{thelang.words['common-actions']}}</th>
         </tr>
         <ng-container *ngIf="xl.length">
           <tr *ngFor="let x of xl">
@@ -166,15 +131,40 @@
               ></check-box>
             </td>
             <td>{{x.id}}</td>
-            <td>{{x.formattedDate('created_at', true)}}</td>
             <td>
-              {{x.subType ? thelang.words['outorders-subscription'] + ' ' +
-              x.subType : thelang.words['outorders-subaccounts']}}
+              <date-picker
+                [(value)]="x.date"
+                (valueChange)="updateParam(x, 'date')"
+              ></date-picker>
             </td>
-            <td>{{x.tg_username}}</td>
-            <td>{{x.user_email}}</td>
-            <td>{{x.amount}} USD</td>
-            <td *ngIf="!isAdminSeller">
+            <td>
+              <div class="inputwithbtns reverse">
+                <span>{{x.toolcat?.translation(1)?.name}}</span>
+                <div *ngIf="x.toolcat_id" class="iwb-btns">
+                  <a
+                    class="roundbtn link"
+                    target="_blank"
+                    href="/tools/toolcats/edit/{{x.toolcat_id}}"
+                    ><span></span
+                  ></a>
+                </div>
+              </div>
+            </td>
+            <td>
+              <input
+                type="text"
+                [dir]="selectedLang.dir"
+                [(ngModel)]="x.translation(selectedLang.id).name"
+                (blur)="updateMlParam(x.translation(selectedLang.id), 'name');"
+              />
+            </td>
+            <td>
+              <check-box
+                [(value)]="x.active"
+                (valueChange)="updateParam(x, 'active')"
+              ></check-box>
+            </td>
+            <td>
               <div class="l-actions">
                 <a
                   class="roundbtn edit"

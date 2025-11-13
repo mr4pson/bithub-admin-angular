@@ -30,7 +30,7 @@ export interface IEditorCfg {
 
 const host = window.location.host;
 const configs: IKeyValue<IConfig> = {
-  'localhost:52571': {
+  'localhost:62507': {
     // 'localhost:4200': {
     apiUrl: 'http://localhost:3030/api/admin',
     staticUrl: 'http://localhost:3030',
@@ -69,7 +69,7 @@ const configs: IKeyValue<IConfig> = {
       verify_html: false, // предотвращаем вмешательство в структуру
     },
     // editorKey: 'lq981um5w48fit89rd9ikg938asonhdu756rqsrdeeipoal6',
-    editorKey: 'zttdqc3g32twznzo01uvrpwypr7dnypdnprxtyzapfmhzg0z',
+    editorKey: 'un0b6nxi9y0d4xl32ansrcodheteuzzviyqog7bbu087m7w1',
   },
   'admin.bithab.vio.net.ua': {
     apiUrl: 'https://back.bithab.vio.net.ua/api/admin',
@@ -187,7 +187,7 @@ const configs: IKeyValue<IConfig> = {
       verify_html: false, // предотвращаем вмешательство в структуру
     },
     // editorKey: 'lq981um5w48fit89rd9ikg938asonhdu756rqsrdeeipoal6',
-    editorKey: 'zttdqc3g32twznzo01uvrpwypr7dnypdnprxtyzapfmhzg0z',
+    editorKey: 'un0b6nxi9y0d4xl32ansrcodheteuzzviyqog7bbu087m7w1',
   },
 };
 

@@ -44,6 +44,8 @@ import { IShoporder } from '../model/entities/shoporder';
 import { IMailing } from '../model/entities/mailing';
 import { IDrop } from '../model/entities/drop';
 import { IWithdraworder } from '../model/entities/withdraworder';
+import { IToolcat } from '../model/entities/toolcat';
+import { ITool } from '../model/entities/tool';
 
 @Injectable()
 export class CDataService {
@@ -469,6 +471,44 @@ export class CDataService {
     return this.sendRequest('articles/update', fd);
   }
 
+  public toolcatsChunk(dto: IGetList): Observable<IResponse<IToolcat[]>> {
+    return this.sendRequest('toolcats/chunk', dto);
+  }
+  public toolcatsOne(id: number): Observable<IResponse<IToolcat>> {
+    return this.sendRequest(`toolcats/one/${id}`);
+  }
+  public toolcatsDelete(id: number): Observable<IResponse<void>> {
+    return this.sendRequest(`toolcats/delete/${id}`);
+  }
+  public toolcatsDeleteBulk(ids: number[]): Observable<IResponse<void>> {
+    return this.sendRequest('toolcats/delete-bulk', ids);
+  }
+  public toolcatsCreate(fd: FormData): Observable<IResponse<IToolcat>> {
+    return this.sendRequest('toolcats/create', fd);
+  }
+  public toolcatsUpdate(fd: FormData): Observable<IResponse<IToolcat>> {
+    return this.sendRequest('toolcats/update', fd);
+  }
+
+  public toolsChunk(dto: IGetList): Observable<IResponse<ITool[]>> {
+    return this.sendRequest('tools/chunk', dto);
+  }
+  public toolsOne(id: number): Observable<IResponse<ITool>> {
+    return this.sendRequest(`tools/one/${id}`);
+  }
+  public toolsDelete(id: number): Observable<IResponse<void>> {
+    return this.sendRequest(`tools/delete/${id}`);
+  }
+  public toolsDeleteBulk(ids: number[]): Observable<IResponse<void>> {
+    return this.sendRequest('tools/delete-bulk', ids);
+  }
+  public toolsCreate(fd: FormData): Observable<IResponse<ITool>> {
+    return this.sendRequest('tools/create', fd);
+  }
+  public toolsUpdate(fd: FormData): Observable<IResponse<ITool>> {
+    return this.sendRequest('tools/update', fd);
+  }
+
   public awardsChunk(dto: IGetList): Observable<IResponse<IAward[]>> {
     return this.sendRequest('awards/chunk', dto);
   }
@@ -488,10 +528,11 @@ export class CDataService {
     return this.sendRequest('awards/update', fd);
   }
 
-  public statsUsersMonthly(
-    year: number
-  ): Observable<IResponse<IStatUsersMonthly>> {
-    return this.sendRequest(`stats/users-monthly/${year}`);
+  public statsUsersMonthly(dto: {
+    from: string;
+    to: string;
+  }): Observable<IResponse<IStatUsersMonthly>> {
+    return this.sendRequest(`stats/users-monthly`, dto);
   }
   public statsCats(): Observable<IResponse<IStatCats>> {
     return this.sendRequest(`stats/cats`);

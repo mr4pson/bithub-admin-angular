@@ -33,6 +33,8 @@ import { CShopordersModule } from './pages/shoporders/shoporders.module';
 import { CMailingsModule } from './pages/mailings/mailings.module';
 import { CDropsModule } from './pages/drops/drops.module';
 import { CWithdrawalModule } from './pages/withdrawals/withdrawals.module';
+import { CToolcatsModule } from './pages/toolcats/toolcats.module';
+import { CToolsModule } from './pages/tools/tools.module';
 
 const routes: Routes = [
   { path: '', component: CHomePage, canActivate: [CAuthGuard] },
@@ -150,6 +152,16 @@ const routes: Routes = [
   {
     path: 'education/articles',
     loadChildren: () => CArticlesModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'tools/toolcats',
+    loadChildren: () => CToolcatsModule,
+    canActivate: [CAuthGuard],
+  },
+  {
+    path: 'tools/tools',
+    loadChildren: () => CToolsModule,
     canActivate: [CAuthGuard],
   },
   {

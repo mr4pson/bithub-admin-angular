@@ -26,6 +26,7 @@ import { CGuideRepository } from 'src/app/services/repositories/guide.repository
 import { CShopcatRepository } from 'src/app/services/repositories/shopcat.repository';
 import { CShopitemRepository } from 'src/app/services/repositories/shopitem.repository';
 import { AVAILABLE_FOR_LIST, GUIDE_TYPES } from './constants';
+import { CToolcatRepository } from 'src/app/services/repositories/toolcat.repository';
 
 @Component({
   selector: 'select-simple',
@@ -82,6 +83,7 @@ export class CSelectSimpleComponent implements OnInit, OnChanges {
     private artcatRepository: CArtcatRepository,
     private guideRepository: CGuideRepository,
     private shopcatRepository: CShopcatRepository,
+    private toolcatRepository: CToolcatRepository,
     private shopitemRepository: CShopitemRepository // private someRepository: SomeRepository, - any compatible repo
   ) {}
 
@@ -116,6 +118,7 @@ export class CSelectSimpleComponent implements OnInit, OnChanges {
     return filter;
   }
   get sitemsRepository(): CRepository<CTranslatableEntity<any>> {
+    console.log(this.entity);
     return this[`${this.entity}Repository`];
   }
 

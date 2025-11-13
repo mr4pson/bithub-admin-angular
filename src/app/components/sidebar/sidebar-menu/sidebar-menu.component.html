@@ -161,6 +161,27 @@
       </div>
       <a
         *ngIf="group_id === 1 || group_id === 2"
+        class="tools expandable"
+        [class.expanded]="subActive.tools"
+        [class.active]="url[1] === 'tools'"
+        (click)="toggleSub('tools')"
+        ><span>{{ thelang.words["sidebar-tools"] }}</span></a
+      >
+      <div
+        *ngIf="group_id === 1 || group_id === 2"
+        class="sbn-sub"
+        [class.active-2]="subActive.tools"
+      >
+        <a [class.active]="url[2] === 'tools'" routerLink="/tools/tools"
+          ><span>{{ thelang.words["sidebar-tools"] }}</span></a
+        >
+        <a [class.active]="url[2] === 'artcats'" routerLink="/tools/toolcats"
+          ><span>{{ thelang.words["sidebar-toolcats"] }}</span></a
+        >
+      </div>
+
+      <a
+        *ngIf="group_id === 1 || group_id === 2"
         class="shop expandable"
         [class.expanded]="subActive.shop"
         [class.active]="url[1] === 'shop'"

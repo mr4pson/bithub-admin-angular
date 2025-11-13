@@ -37,6 +37,8 @@ import { CShoporderRepository } from './repositories/shoporder.repository';
 import { CMailingRepository } from './repositories/mailing.repository';
 import { CDropRepository } from './repositories/drop.repository';
 import { CWithdraworderRepository } from './repositories/withdraworder.repository';
+import { CToolRepository } from './repositories/tool.repository';
+import { CToolcatRepository } from './repositories/toolcat.repository';
 
 @NgModule({
   imports: [],
@@ -71,6 +73,8 @@ import { CWithdraworderRepository } from './repositories/withdraworder.repositor
     COutorderRepository,
     CReforderRepository,
     CStatRepository,
+    CToolRepository,
+    CToolcatRepository,
     CProposalRepository,
     CArtcatRepository,
     CArticleRepository,

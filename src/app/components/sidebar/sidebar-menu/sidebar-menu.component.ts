@@ -17,6 +17,7 @@ export class CSidebarMenuComponent implements AfterViewInit {
     catalogue: false,
     finances: false,
     education: false,
+    tools: false,
     shop: false,
     misc: false,
   };
