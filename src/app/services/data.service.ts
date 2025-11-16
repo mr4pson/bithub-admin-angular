@@ -46,6 +46,7 @@ import { IDrop } from '../model/entities/drop';
 import { IWithdraworder } from '../model/entities/withdraworder';
 import { IToolcat } from '../model/entities/toolcat';
 import { ITool } from '../model/entities/tool';
+import { IStatMonthlyData } from '../model/entities/stats/stat.month.data';
 
 @Injectable()
 export class CDataService {
@@ -533,6 +534,54 @@ export class CDataService {
     to: string;
   }): Observable<IResponse<IStatUsersMonthly>> {
     return this.sendRequest(`stats/users-monthly`, dto);
+  }
+  public statsMauMonthly(dto: {
+    from: string;
+    to: string;
+  }): Observable<IResponse<IStatMonthlyData>> {
+    return this.sendRequest(`stats/mau`, dto);
+  }
+  public statsSubscribersMonthly(dto: {
+    from: string;
+    to: string;
+  }): Observable<IResponse<IStatMonthlyData>> {
+    return this.sendRequest(`stats/subscribers`, dto);
+  }
+  public statsAvgSubPriceMonthly(dto: {
+    from: string;
+    to: string;
+  }): Observable<IResponse<IStatMonthlyData>> {
+    return this.sendRequest(`stats/avg-subscription-price`, dto);
+  }
+  public statsSubcriptionProfitMonthly(dto: {
+    from: string;
+    to: string;
+  }): Observable<IResponse<IStatMonthlyData>> {
+    return this.sendRequest(`stats/subscription-profit`, dto);
+  }
+  public statsClientsMonthly(dto: {
+    from: string;
+    to: string;
+  }): Observable<IResponse<IStatMonthlyData>> {
+    return this.sendRequest(`stats/clients`, dto);
+  }
+  public statsAvgClientsOrderPriceMonthly(dto: {
+    from: string;
+    to: string;
+  }): Observable<IResponse<IStatMonthlyData>> {
+    return this.sendRequest(`stats/avg-client-order-price`, dto);
+  }
+  public statsShopordersRevenueMonthly(dto: {
+    from: string;
+    to: string;
+  }): Observable<IResponse<IStatMonthlyData>> {
+    return this.sendRequest(`stats/shoporders-revenue`, dto);
+  }
+  public statsShopordersProfitMonthly(dto: {
+    from: string;
+    to: string;
+  }): Observable<IResponse<IStatMonthlyData>> {
+    return this.sendRequest(`stats/shoporders-profit`, dto);
   }
   public statsCats(): Observable<IResponse<IStatCats>> {
     return this.sendRequest(`stats/cats`);

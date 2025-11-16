@@ -43,7 +43,7 @@
         >
           <div
             class="gccc-fill"
-            [title]="users[i]"
+            [title]="users[i].value"
             [style.background-color]="color(0)"
           ></div>
         </div>
@@ -54,7 +54,7 @@
         >
           <div
             class="gccc-fill"
-            [title]="supers[i]"
+            [title]="supers[i].value"
             [style.background-color]="color(1)"
           ></div>
         </div>
@@ -65,7 +65,7 @@
         >
           <div
             class="gccc-fill"
-            [title]="subs[i]"
+            [title]="subs[i].value"
             [style.background-color]="color(2)"
           ></div>
         </div>
@@ -91,10 +91,10 @@
         {{ thelang.words["stats-um-subs"] }}({{ subsRegCount }})
       </div>
     </div>
-    <div class="gcl-item">
+    <!-- <div class="gcl-item">
       <div class="gcl-title">
         {{ thelang.words["stats-um-overall"] }}({{ overallRegCount }})
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

@@ -1,0 +1,63 @@
+<div class="graph-columns">
+  <div class="gc-params">
+    <div class="gc-param">
+      <div class="gf-param b-margined3">
+        <div class="gf-title b-margined1">
+          {{ thelang.words["common-from"] }}
+        </div>
+        <div class="gfp-inputwrap">
+          <timestamp-picker
+            [(value)]="filter.from"
+            [useTime]="true"
+            [resetable]="true"
+            [resetvalue]="undefined"
+            (valueChange)="initStats()"
+          ></timestamp-picker>
+        </div>
+      </div>
+      <div class="gf-param b-margined3">
+        <div class="gf-title b-margined1">
+          {{ thelang.words["common-to"] }}
+        </div>
+        <div class="gfp-inputwrap">
+          <timestamp-picker
+            [(value)]="filter.to"
+            [useTime]="true"
+            [resetable]="true"
+            [resetvalue]="undefined"
+            (valueChange)="initStats()"
+          ></timestamp-picker>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="gc-main">
+    <div class="gc-max">{{ getRoundedValue(max) }}</div>
+    <div class="gc-columns">
+      <div class="gcc-item" *ngFor="let monthItem of data; let i = index">
+        <div class="gcc-title">
+          {{ monthItem.month + "." + monthItem.year }}
+        </div>
+        <div
+          class="gcc-column col1"
+          [style.height]="height(monthItem)"
+          [style.transition-delay]="0.1 * i + 's'"
+        >
+          <div
+            class="gccc-fill"
+            [title]="getRoundedValue(monthItem.value)"
+            [style.background-color]="color(0)"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="gc-legend">
+    <div class="gcl-item">
+      <div class="gcl-mark" [style.background-color]="color(0)"></div>
+      <div class="gcl-title">
+        {{ thelang.words["stats-total"] }}({{ getRoundedValue(sum) }})
+      </div>
+    </div>
+  </div>
+</div>
