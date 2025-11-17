@@ -6,55 +6,55 @@
 </div>
 <div class="page-content">
   <div class="h-panels wide">
-    <div class="h-panel">
+    <div *ngIf="isAnalyticsAvailable" class="h-panel">
       <h2>{{thelang.words["stats-um"]}}</h2>
       <div class="hp-content">
         <stats-users-monthly></stats-users-monthly>
       </div>
     </div>
-    <div class="h-panel">
+    <div *ngIf="isAnalyticsAvailable" class="h-panel">
       <h2>{{thelang.words["stats-mau"]}}</h2>
       <div class="hp-content">
         <stats-mau-monthly></stats-mau-monthly>
       </div>
     </div>
-    <div class="h-panel">
+    <div *ngIf="isAnalyticsAvailable" class="h-panel">
       <h2>{{thelang.words["stats-subscribers"]}}</h2>
       <div class="hp-content">
         <stats-subscribers-monthly></stats-subscribers-monthly>
       </div>
     </div>
-    <div class="h-panel">
+    <div *ngIf="isAnalyticsAvailable" class="h-panel">
       <h2>{{thelang.words["stats-avg-sub-price"]}}</h2>
       <div class="hp-content">
         <stats-avg-sub-price-monthly></stats-avg-sub-price-monthly>
       </div>
     </div>
-    <div class="h-panel">
+    <div *ngIf="isAnalyticsAvailable" class="h-panel">
       <h2>{{thelang.words["stats-subscription-profit"]}}</h2>
       <div class="hp-content">
         <stats-subscription-profit-monthly></stats-subscription-profit-monthly>
       </div>
     </div>
-    <div class="h-panel">
+    <div *ngIf="isAnalyticsAvailable" class="h-panel">
       <h2>{{thelang.words["stats-clients"]}}</h2>
       <div class="hp-content">
         <stats-clients-monthly></stats-clients-monthly>
       </div>
     </div>
-    <div class="h-panel">
+    <div *ngIf="isAnalyticsAvailable" class="h-panel">
       <h2>{{thelang.words["stats-avg-clients-order-price"]}}</h2>
       <div class="hp-content">
         <stats-avg-clients-order-price-monthly></stats-avg-clients-order-price-monthly>
       </div>
     </div>
-    <div class="h-panel">
+    <div *ngIf="isAnalyticsAvailable" class="h-panel">
       <h2>{{thelang.words["stats-shoporders-revenue"]}}</h2>
       <div class="hp-content">
         <stats-shoporders-revenue-monthly></stats-shoporders-revenue-monthly>
       </div>
     </div>
-    <div class="h-panel">
+    <div *ngIf="isAnalyticsAvailable" class="h-panel">
       <h2>{{thelang.words["stats-shoporders-profit"]}}</h2>
       <div class="hp-content">
         <stats-shoporders-profit-monthly></stats-shoporders-profit-monthly>
