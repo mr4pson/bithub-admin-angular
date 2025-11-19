@@ -119,18 +119,18 @@ export const AVAILABLE_FOR_LIST = [
     build: build,
     translation: translation,
   } as CTranslatableEntity<any>,
-  {
-    id: 4,
-    __shift: '',
-    translations: [
-      {
-        id: 1,
-        lang_id: 1,
-        type: 'dg-team',
-        name: 'Available to DG TEAM',
-      },
-    ],
-    build: build,
-    translation: translation,
-  } as CTranslatableEntity<any>,
+  // {
+  //   id: 4,
+  //   __shift: '',
+  //   translations: [
+  //     {
+  //       id: 1,
+  //       lang_id: 1,
+  //       type: 'dg-team',
+  //       name: 'Available to DG TEAM',
+  //     },
+  //   ],
+  //   build: build,
+  //   translation: translation,
+  // } as CTranslatableEntity<any>,
 ];
