@@ -111,12 +111,11 @@
       >
     </div>
     <div class="gfp-inputwrap">
-      <input
-        type="text"
+      <text-editor
         [dir]="selectedLang.dir"
-        [(ngModel)]="x.translation(selectedLang.id).tasks"
-        [class.error]="errors.tasks"
-      />
+        [(value)]="x.translation(selectedLang.id).tasks"
+        [error]="errors.tasks"
+      ></text-editor>
     </div>
     <div class="gfp-error" *ngIf="errors.tasks">
       {{ thelang.words[errors.tasks] }}
