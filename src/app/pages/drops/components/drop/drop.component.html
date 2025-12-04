@@ -1,80 +1,191 @@
-
 <div class="b-margined3">
-    <radio-by-entity [items]="ll" [(value)]="selectedLang" visibleField="slug" [title]="thelang.words['common-lang']+':'"></radio-by-entity>
+  <radio-by-entity
+    [items]="ll"
+    [(value)]="selectedLang"
+    visibleField="slug"
+    [title]="thelang.words['common-lang'] + ':'"
+  ></radio-by-entity>
 </div>
 <div class="generic-form">
-    <div class="gf-param b-margined3" *ngIf="x.id">
-        <div class="gfp-title b-margined1"><label>ID</label></div>
-        <div class="gfp-inputwrap"><input class="small" type="text" [value]="x.id" disabled></div>
+  <div class="gf-param b-margined3" *ngIf="x.id">
+    <div class="gfp-title b-margined1"><label>ID</label></div>
+    <div class="gfp-inputwrap">
+      <input class="small" type="text" [value]="x.id" disabled />
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label [class.required]="isRequired('name')">{{thelang.words['drops-name']}}</label></div>
-        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.name" [class.error]="errors.name"></div>
-        <div class="gfp-error" *ngIf="errors.name">{{thelang.words[errors.name]}}</div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label [class.required]="isRequired('name')">{{
+        thelang.words["drops-name"]
+      }}</label>
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label [class.required]="isRequired('link')">{{thelang.words['drops-link']}} ({{selectedLang.slug}})</label></div>
-        <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.translation(selectedLang.id).link" [class.error]="errors.link"></div>
-        <div class="gfp-error" *ngIf="errors.link">{{thelang.words[errors.link]}}</div>
+    <div class="gfp-inputwrap">
+      <input type="text" [(ngModel)]="x.name" [class.error]="errors.name" />
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label [class.required]="isRequired('img')">{{thelang.words['drops-img']}}</label></div>
-        <div class="gfp-inputwrap"><image-picker folder="drops" [(img)]="x.img" [error]="errors.img"></image-picker></div>
-        <div class="gfp-error" *ngIf="errors.img">{{thelang.words[errors.img]}}</div>
+    <div class="gfp-error" *ngIf="errors.name">
+      {{ thelang.words[errors.name] }}
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label [class.required]="isRequired('drop')">{{thelang.words['drops-drop']}}</label></div>
-        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.drop" [class.error]="errors.drop"></div>
-        <div class="gfp-error" *ngIf="errors.drop">{{thelang.words[errors.drop]}}</div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label [class.required]="isRequired('link')"
+        >{{ thelang.words["drops-link"] }} ({{ selectedLang.slug }})</label
+      >
     </div>
-    <div class="gf-param">
-        <div class="gfp-title b-margined1"><label>{{thelang.words['drops-early']}}</label></div>
-        <div class="gfp-inputwrap"><check-box [(value)]="x.early"></check-box></div>
+    <div class="gfp-inputwrap">
+      <input
+        type="text"
+        [dir]="selectedLang.dir"
+        [(ngModel)]="x.translation(selectedLang.id).link"
+        [class.error]="errors.link"
+      />
     </div>
-    <div class="gf-param b-margined3" *ngIf="!x.early">
-        <div class="gfp-title b-margined1"><label>{{thelang.words['drops-score']}}</label></div>
-        <div class="gfp-inputwrap"><input type="number" class="small" [(ngModel)]="x.score"></div>
+    <div class="gfp-error" *ngIf="errors.link">
+      {{ thelang.words[errors.link] }}
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label>{{thelang.words['drops-spending-money']}}</label></div>
-        <div class="gfp-inputwrap"><input type="number" class="small" [(ngModel)]="x.spending_money"></div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label [class.required]="isRequired('img')">{{
+        thelang.words["drops-img"]
+      }}</label>
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label>{{thelang.words['drops-spending-time']}}</label></div>
-        <div class="gfp-inputwrap"><input type="number" class="small" [(ngModel)]="x.spending_time"></div>
+    <div class="gfp-inputwrap">
+      <image-picker
+        folder="drops"
+        [(img)]="x.img"
+        [error]="errors.img"
+      ></image-picker>
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label [class.required]="isRequired('tasks')">{{thelang.words['drops-tasks']}} ({{selectedLang.slug}})</label></div>
-        <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.translation(selectedLang.id).tasks" [class.error]="errors.tasks"></div>
-        <div class="gfp-error" *ngIf="errors.tasks">{{thelang.words[errors.tasks]}}</div>
+    <div class="gfp-error" *ngIf="errors.img">
+      {{ thelang.words[errors.img] }}
     </div>
-    <div class="gf-param b-margined3">
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label [class.required]="isRequired('drop')">{{
+        thelang.words["drops-drop"]
+      }}</label>
+    </div>
+    <div class="gfp-inputwrap">
+      <input type="text" [(ngModel)]="x.drop" [class.error]="errors.drop" />
+    </div>
+    <div class="gfp-error" *ngIf="errors.drop">
+      {{ thelang.words[errors.drop] }}
+    </div>
+  </div>
+  <div class="gf-param">
+    <div class="gfp-title b-margined1">
+      <label>{{ thelang.words["drops-early"] }}</label>
+    </div>
+    <div class="gfp-inputwrap"><check-box [(value)]="x.early"></check-box></div>
+  </div>
+  <div class="gf-param b-margined3" *ngIf="!x.early">
+    <div class="gfp-title b-margined1">
+      <label>{{ thelang.words["drops-score"] }}</label>
+    </div>
+    <div class="gfp-inputwrap">
+      <input type="number" class="small" [(ngModel)]="x.score" />
+    </div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label>{{ thelang.words["drops-spending-money"] }}</label>
+    </div>
+    <div class="gfp-inputwrap">
+      <input type="number" class="small" [(ngModel)]="x.spending_money" />
+    </div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label>{{ thelang.words["drops-spending-time"] }}</label>
+    </div>
+    <div class="gfp-inputwrap">
+      <input type="number" class="small" [(ngModel)]="x.spending_time" />
+    </div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label [class.required]="isRequired('tasks')"
+        >{{ thelang.words["drops-tasks"] }} ({{ selectedLang.slug }})</label
+      >
+    </div>
+    <div class="gfp-inputwrap">
+      <input
+        type="text"
+        [dir]="selectedLang.dir"
+        [(ngModel)]="x.translation(selectedLang.id).tasks"
+        [class.error]="errors.tasks"
+      />
+    </div>
+    <div class="gfp-error" *ngIf="errors.tasks">
+      {{ thelang.words[errors.tasks] }}
+    </div>
+  </div>
+  <!-- <div class="gf-param b-margined3">
         <div class="gfp-title b-margined1"><label>{{thelang.words['drops-term']}}</label></div>
         <div class="gfp-inputwrap"><input type="number" class="small" [(ngModel)]="x.term"></div>
+    </div> -->
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label [class.required]="isRequired('fundrising')">{{
+        thelang.words["drops-fundrising"]
+      }}</label>
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label [class.required]="isRequired('fundrising')">{{thelang.words['drops-fundrising']}}</label></div>
-        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.fundrising" [class.error]="errors.fundrising"></div>
-        <div class="gfp-error" *ngIf="errors.fundrising">{{thelang.words[errors.fundrising]}}</div>
+    <div class="gfp-inputwrap">
+      <input
+        type="text"
+        [(ngModel)]="x.fundrising"
+        [class.error]="errors.fundrising"
+      />
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label [class.required]="isRequired('invest')">{{thelang.words['drops-invest']}} ({{selectedLang.slug}})</label></div>
-        <div class="gfp-inputwrap"><input type="text" [dir]="selectedLang.dir" [(ngModel)]="x.translation(selectedLang.id).invest" [class.error]="errors.invest"></div>
-        <div class="gfp-error" *ngIf="errors.invest">{{thelang.words[errors.invest]}}</div>
+    <div class="gfp-error" *ngIf="errors.fundrising">
+      {{ thelang.words[errors.fundrising] }}
     </div>
-    <!--
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label [class.required]="isRequired('invest')"
+        >{{ thelang.words["drops-invest"] }} ({{ selectedLang.slug }})</label
+      >
+    </div>
+    <div class="gfp-inputwrap">
+      <input
+        type="text"
+        [dir]="selectedLang.dir"
+        [(ngModel)]="x.translation(selectedLang.id).invest"
+        [class.error]="errors.invest"
+      />
+    </div>
+    <div class="gfp-error" *ngIf="errors.invest">
+      {{ thelang.words[errors.invest] }}
+    </div>
+  </div>
+  <!--
     <div class="gf-param b-margined3">
         <div class="gfp-title b-margined1"><label>{{thelang.words['drops-invest']}}</label></div>
         <div class="gfp-inputwrap"><input type="number" class="small" [(ngModel)]="x.invest"></div>
     </div>
     -->
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label [class.required]="isRequired('cat')">{{thelang.words['drops-cat']}}</label></div>
-        <div class="gfp-inputwrap"><input type="text" [(ngModel)]="x.cat" [class.error]="errors.cat"></div>
-        <div class="gfp-error" *ngIf="errors.cat">{{thelang.words[errors.cat]}}</div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label [class.required]="isRequired('cat')">{{
+        thelang.words["drops-cat"]
+      }}</label>
     </div>
-    <div class="gf-param b-margined3">
-        <div class="gfp-title b-margined1"><label>{{thelang.words['drops-date']}}</label></div>
-        <div class="gfp-inputwrap"><date-picker [(value)]="x.date"></date-picker></div>
+    <div class="gfp-inputwrap">
+      <input type="text" [(ngModel)]="x.cat" [class.error]="errors.cat" />
     </div>
+    <div class="gfp-error" *ngIf="errors.cat">
+      {{ thelang.words[errors.cat] }}
+    </div>
+  </div>
+  <div class="gf-param b-margined3">
+    <div class="gfp-title b-margined1">
+      <label>{{ thelang.words["drops-date"] }}</label>
+    </div>
+    <div class="gfp-inputwrap">
+      <date-picker [(value)]="x.date"></date-picker>
+    </div>
+  </div>
 </div>

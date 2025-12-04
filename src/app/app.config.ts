@@ -22,6 +22,8 @@ export interface IEditorCfg {
   readonly menubar: boolean;
   readonly plugins: string[];
   readonly toolbar: string;
+  readonly resize: string;
+  readonly link_default_target: string;
   readonly relative_urls: boolean;
   readonly images_upload_url: string;
   readonly automatic_uploads: boolean;
@@ -30,7 +32,7 @@ export interface IEditorCfg {
 
 const host = window.location.host;
 const configs: IKeyValue<IConfig> = {
-  'localhost:55662': {
+  'localhost:58437': {
     // 'localhost:4200': {
     apiUrl: 'http://localhost:3030/api/admin',
     staticUrl: 'http://localhost:3030',
@@ -64,6 +66,8 @@ const configs: IKeyValue<IConfig> = {
       toolbar:
         'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent table link image',
       relative_urls: false,
+      resize: 'both',
+      link_default_target: '_blank',
       images_upload_url: 'пишем любую фигню :-)', // без этого кнопка upload не появится
       automatic_uploads: false, // автоматически передавать файлы никуда не надо
       verify_html: false, // предотвращаем вмешательство в структуру
@@ -104,6 +108,8 @@ const configs: IKeyValue<IConfig> = {
       toolbar:
         'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent table link image',
       relative_urls: false,
+      resize: 'both',
+      link_default_target: '_blank',
       images_upload_url: 'пишем любую фигню :-)', // без этого кнопка upload не появится
       automatic_uploads: false, // автоматически передавать файлы никуда не надо
       verify_html: false, // предотвращаем вмешательство в структуру
@@ -143,6 +149,8 @@ const configs: IKeyValue<IConfig> = {
       toolbar:
         'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent table link image',
       relative_urls: false,
+      resize: 'both',
+      link_default_target: '_blank',
       images_upload_url: 'пишем любую фигню :-)', // без этого кнопка upload не появится
       automatic_uploads: false, // автоматически передавать файлы никуда не надо
       verify_html: false, // предотвращаем вмешательство в структуру
@@ -177,11 +185,13 @@ const configs: IKeyValue<IConfig> = {
     editorCfg: {
       branding: false,
       height: 350,
+      link_default_target: '_blank',
       menubar: false,
       plugins: ['table', 'link', 'image'],
       toolbar:
         'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent table link image',
       relative_urls: false,
+      resize: 'both',
       images_upload_url: 'пишем любую фигню :-)', // без этого кнопка upload не появится
       automatic_uploads: false, // автоматически передавать файлы никуда не надо
       verify_html: false, // предотвращаем вмешательство в структуру
