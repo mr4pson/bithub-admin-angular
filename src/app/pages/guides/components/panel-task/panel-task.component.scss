@@ -1,10 +1,59 @@
 .panel {
-    .p-left {
-        @media (min-width:0) {width: 0;}
-        @media (min-width:1000px) {width: calc(100% - 800px);}        
-    }
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+
     .p-right {
-        @media (min-width:0) {width: 100%;}
-        @media (min-width:1000px) {width: 800px;}
+        height: 80%;
+
+        @media (min-width:0) {
+            width: 100%;
+        }
+
+        @media (min-width:1000px) {
+            width: 800px;
+        }
     }
+}
+
+/* Resizers for the right panel */
+.p-right {
+    /* ensure position:relative если требуется (we already set inline) */
+}
+
+.resizer {
+    z-index: 2000;
+    background: transparent;
+}
+
+/* thin vertical strip on the left edge to resize width */
+.resizer-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    cursor: ew-resize;
+}
+
+/* small corner handle bottom-right to resize width+height (ABSOLUTE in p-foot to stay fixed) */
+.resizer-corner {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 16px;
+    height: 16px;
+    cursor: nwse-resize;
+}
+
+/* ensure p-foot has position:relative for absolute positioning of resizer-corner */
+.p-foot {
+    position: relative;
+}
+
+/* optional: prevent text selection while resizing */
+body.resizing {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }

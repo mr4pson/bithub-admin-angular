@@ -1,0 +1,54 @@
+.panel {
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+
+  .p-right {
+    height: 80%;
+
+    @media (min-width:0) {
+      width: 100%;
+    }
+
+    @media (min-width:1000px) {
+      width: 800px;
+    }
+  }
+}
+
+/* Resizers for the right panel */
+.p-right {
+  /* ensure position:relative если требуется (we already set inline) */
+}
+
+.resizer {
+  z-index: 2000;
+  background: transparent;
+}
+
+/* thin vertical strip on the left edge to resize width */
+.resizer-left {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  height: 5px;
+  cursor: ew-resize;
+}
+
+/* small corner handle bottom-right to resize width+height (FIXED position to stay in place during scroll) */
+.resizer-corner {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  width: 16px;
+  height: 16px;
+  cursor: nwse-resize;
+}
+
+/* optional: prevent text selection while resizing */
+body.resizing {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

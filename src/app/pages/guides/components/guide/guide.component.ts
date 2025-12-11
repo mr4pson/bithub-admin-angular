@@ -61,7 +61,8 @@ export class CGuideComponent extends CEntityComponent<CGuide> {
     confirm(this.thelang.words['common-sure']) && this.x.tasks.splice(i, 1);
   }
 
-  public tasksEdit(i: number): void {
+  public tasksEdit(e: any, i: number): void {
+    e.stopPropagation();
     this.taskPanelMode = 'edit';
     this.taskToEditIndex = i;
     this.task = new CTask().build(this.x.tasks[i]);

@@ -419,7 +419,7 @@
                 <div
                   class="roundbtn edit"
                   [title]="thelang.words['common-edit']"
-                  (click)="tasksEdit(i)"
+                  (click)="tasksEdit($event, i)"
                 >
                   <span></span>
                 </div>
@@ -452,6 +452,7 @@
     </div>
   </div>
   <panel-task
+    *ngIf="taskPanelActive"
     [x]="task"
     [ll]="ll"
     [(active)]="taskPanelActive"

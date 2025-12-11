@@ -32,7 +32,7 @@ export interface IEditorCfg {
 
 const host = window.location.host;
 const configs: IKeyValue<IConfig> = {
-  'localhost:58437': {
+  'localhost:4203': {
     // 'localhost:4200': {
     apiUrl: 'http://localhost:3030/api/admin',
     staticUrl: 'http://localhost:3030',
@@ -62,9 +62,9 @@ const configs: IKeyValue<IConfig> = {
       branding: false,
       height: 350,
       menubar: false,
-      plugins: ['table', 'link', 'image'],
+      plugins: ['table', 'link', 'anchor', 'image'],
       toolbar:
-        'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent table link image',
+        'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent table link anchor image',
       relative_urls: false,
       resize: 'both',
       link_default_target: '_blank',
@@ -104,9 +104,9 @@ const configs: IKeyValue<IConfig> = {
       branding: false,
       height: 350,
       menubar: false,
-      plugins: ['table', 'link', 'image'],
+      plugins: ['table', 'link', 'anchor', 'image'],
       toolbar:
-        'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent table link image',
+        'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent table link anchor image',
       relative_urls: false,
       resize: 'both',
       link_default_target: '_blank',
@@ -145,9 +145,9 @@ const configs: IKeyValue<IConfig> = {
       branding: false,
       height: 350,
       menubar: false,
-      plugins: ['table', 'link', 'image'],
+      plugins: ['table', 'link', 'anchor', 'image'],
       toolbar:
-        'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent table link image',
+        'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent table link anchor image',
       relative_urls: false,
       resize: 'both',
       link_default_target: '_blank',
@@ -187,9 +187,9 @@ const configs: IKeyValue<IConfig> = {
       height: 350,
       link_default_target: '_blank',
       menubar: false,
-      plugins: ['table', 'link', 'image'],
+      plugins: ['table', 'link', 'anchor', 'image'],
       toolbar:
-        'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent table link image',
+        'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent table link anchor image',
       relative_urls: false,
       resize: 'both',
       images_upload_url: 'пишем любую фигню :-)', // без этого кнопка upload не появится
