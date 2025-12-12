@@ -1,13 +1,6 @@
 <div class="panel" [class.active]="active">
   <!-- p-right теперь управляется через ширину/высоту и имеет resizers -->
-  <div
-    #pright
-    class="p-right"
-    appClickOutside
-    [isResizing]="resizing"
-    (clickOutside)="onClose()"
-    style="position: relative"
-  >
+  <div #pright class="p-right" style="position: relative">
     <div class="p-head">
       <div class="p-title tasks">{{ thelang.words["tasks-head"] }}</div>
       <div class="roundbtn close" (click)="onClose()"><span></span></div>
